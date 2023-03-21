@@ -1,6 +1,10 @@
 <resources>
     <string name="app_name">Movie Streaming</string>
     <string name="genre">ژاندر</string>
+    <string name="topMovie">فیلم های برتر</string>
+    <string name="more">مشاهده همه</string>
+    <string name="topSeries">سریال های برتر</string>
+    <string name="todo">TODO</string>
 
 
 </resources>

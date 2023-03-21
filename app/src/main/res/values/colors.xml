@@ -18,7 +18,7 @@
     <color name="white">#FFFFFFFF</color>
 
 
-
+    <color name="text_color">@color/gray_900</color>
 
 
 
