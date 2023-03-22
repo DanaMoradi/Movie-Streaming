@@ -1,74 +1,55 @@
 package com.example.bbc.adapter;
 
-import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager2.widget.ViewPager2;
+import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.bbc.R;
 import com.example.bbc.model.SliderModel;
+import com.makeramen.roundedimageview.RoundedImageView;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class SliderAdapter extends RecyclerView.Adapter<SliderAdapter.SliderViewHolder> {
+public class SliderAdapter extends PagerAdapter {
 
-    private List<SliderModel> sliderItem;
-    private ViewPager2 viewPager2;
 
-    public SliderAdapter(List<SliderModel> sliderItem, ViewPager2 viewPager2) {
-        this.sliderItem = sliderItem;
-        this.viewPager2 = viewPager2;
+    List<SliderModel> list;
+
+    public SliderAdapter(List<SliderModel> list) {
+        this.list = list;
+    }
+
+
+    @Override
+    public int getCount() {
+        return list.size();
     }
 
 
     @NonNull
     @Override
-    public SliderViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new SliderViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_slider, parent, false));
+    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+        View view = LayoutInflater.from(container.getContext()).inflate(R.layout.item_slider, container, false);
+
+        RoundedImageView img = view.findViewById(R.id.iv_slider);
+        Picasso.get().load(list.get(position).getImg()).into(img);
+
+        container.addView(view);
+        return view;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull SliderViewHolder holder, int position) {
-        holder.setImage(sliderItem.get(position));
-        if (position == sliderItem.size() - 2) {
-            viewPager2.post(runnable);
-        }
+    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
+
+        return view == object;
     }
 
     @Override
-    public int getItemCount() {
-        return sliderItem.size();
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        container.removeView((View) object);
     }
-
-    public static class SliderViewHolder extends RecyclerView.ViewHolder {
-
-        ImageView sliderImage;
-
-        SliderViewHolder(@NonNull View itemView) {
-            super(itemView);
-            sliderImage = itemView.findViewById(R.id.iv_slider);
-        }
-
-        void setImage(SliderModel sliderModel) {
-            sliderImage.setImageResource(sliderModel.getImage());
-        }
-
-    }
-
-
-    private Runnable runnable = new Runnable() {
-        @SuppressLint("NotifyDataSetChanged")
-        @Override
-        public void run() {
-            sliderItem.addAll(sliderItem);
-            notifyDataSetChanged();
-        }
-    };
-
-
 }

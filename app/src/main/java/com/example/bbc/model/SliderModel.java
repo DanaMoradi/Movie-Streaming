@@ -2,14 +2,29 @@ package com.example.bbc.model;
 
 public class SliderModel {
 
-    private int image;
+    private String id, name, img;
 
-    public SliderModel(int image) {
-        this.image = image;
+    public String getId() {
+        return id;
     }
 
-    public int getImage() {
-        return image;
+    public void setId(String id) {
+        this.id = id;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
 }
