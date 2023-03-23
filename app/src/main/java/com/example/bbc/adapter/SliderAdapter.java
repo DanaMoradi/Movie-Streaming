@@ -7,9 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-import com.example.bbc.R;
+import com.example.bbc.databinding.ItemSliderBinding;
 import com.example.bbc.model.SliderModel;
-import com.makeramen.roundedimageview.RoundedImageView;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
@@ -17,6 +16,7 @@ import java.util.List;
 public class SliderAdapter extends PagerAdapter {
 
 
+    private ItemSliderBinding binding;
     List<SliderModel> list;
 
     public SliderAdapter(List<SliderModel> list) {
@@ -33,10 +33,12 @@ public class SliderAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        View view = LayoutInflater.from(container.getContext()).inflate(R.layout.item_slider, container, false);
 
-        RoundedImageView img = view.findViewById(R.id.iv_slider);
-        Picasso.get().load(list.get(position).getImg()).into(img);
+        binding = ItemSliderBinding.inflate(LayoutInflater.from(container.getContext()), container, false);
+
+        View view = binding.getRoot();
+
+        Picasso.get().load(list.get(position).getImg()).into(binding.ivSlider);
 
         container.addView(view);
         return view;

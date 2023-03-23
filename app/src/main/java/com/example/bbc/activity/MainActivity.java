@@ -4,12 +4,17 @@ import android.os.Bundle;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.bbc.adapter.GenreMainAdapter;
 import com.example.bbc.databinding.ActivityMainBinding;
+import com.example.bbc.db.volley.GenreVolley;
 import com.example.bbc.db.volley.SliderVolley;
+import com.example.bbc.model.GenreModel;
 import com.example.bbc.model.SliderModel;
 
 import java.util.ArrayList;
@@ -36,9 +41,11 @@ public class MainActivity extends AppCompatActivity {
 
         setRequestQueue();
 
-
         setSlider();
         setSliderTimer();
+
+        setGenre();
+
 
     }
 
@@ -51,6 +58,16 @@ public class MainActivity extends AppCompatActivity {
         SliderVolley sliderVolley = new SliderVolley(this, requestQueue, slider, list);
         sliderVolley.setRequestQueue();
         binding.tabLayout.setupWithViewPager(slider, true);
+    }
+
+    private void setGenre() {
+        List<GenreModel> list = new ArrayList<>();
+        RecyclerView genre = binding.rvMainGenre;
+        genre.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        GenreMainAdapter adapter = new GenreMainAdapter(list);
+        genre.setAdapter(adapter);
+        GenreVolley genreVolley = new GenreVolley(this, requestQueue, binding.rvMainGenre);
+        genreVolley.setRequestQueue();
     }
 
 
@@ -77,7 +94,6 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     }
-
 }
 
 

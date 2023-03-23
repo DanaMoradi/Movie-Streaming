@@ -50,14 +50,70 @@
         app:tabGravity="center"
         app:tabIndicatorHeight="0dp" />
 
-
     <!--Genre-->
+    <androidx.cardview.widget.CardView
+        android:id="@+id/rl_genre_watchAll"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/_8sdp"
+        app:cardCornerRadius="@dimen/_10sdp"
+        app:cardElevation="@dimen/_10sdp"
+        app:cardPreventCornerOverlap="true"
+        app:cardUseCompatPadding="false"
+        app:layout_constraintStart_toStartOf="@+id/main_left_guideLine"
+        app:layout_constraintTop_toBottomOf="@id/tabLayout">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/genre_radius">
+
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/iv_main_genre"
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:clickable="true"
+                android:focusable="true"
+                android:scaleType="fitXY"
+                android:src="@drawable/genre"
+                app:riv_corner_radius="@dimen/_10sdp" />
+
+            <com.makeramen.roundedimageview.RoundedImageView
+
+                android:layout_width="@dimen/_70sdp"
+                android:layout_height="@dimen/_55sdp"
+                android:alpha="0.6"
+                android:background="@drawable/genre_radius"
+                android:elevation="@dimen/_2sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_genre_tittle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_centerVertical="true"
+                android:elevation="@dimen/_20sdp"
+                android:fontFamily="@font/iranian_sans_bold"
+                android:gravity="center"
+                android:lineHeight="@dimen/_30sdp"
+                android:padding="@dimen/_2sdp"
+                android:text="مشاهده همه"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                android:textStyle="bold" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_main_genre"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="@id/main_right_guidLine"
-        app:layout_constraintStart_toStartOf="@id/main_left_guideLine"
+        app:layout_constraintEnd_toStartOf="@+id/main_right_guidLine"
+        app:layout_constraintStart_toEndOf="@+id/rl_genre_watchAll"
         app:layout_constraintTop_toBottomOf="@id/tabLayout" />
     <!--Top Movie Text-->
     <RelativeLayout
