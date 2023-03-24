@@ -3,15 +3,15 @@ package com.example.bbc.db.volley;
 import android.content.Context;
 import android.util.Log;
 
-import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.bbc.adapter.GenreMainAdapter;
-import com.example.bbc.model.GenreModel;
+import com.example.bbc.adapter.TopMovieAdapter;
+import com.example.bbc.model.TopMovieModel;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,25 +20,26 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GenreVolley {
+public class TopMovieVolley {
 
 
-    String link = volleyApp.LINK + "getGenre.php";
+    String link = volleyApp.LINK + "getMovieInformation.php?" + volleyApp.CATEGORY + "=" + volleyApp.CATEGORY_TOP_MOVIE;
 
     RequestQueue requestQueue;
-    List<GenreModel> list = new ArrayList<>();
-    GenreMainAdapter adapter;
+    List<TopMovieModel> list = new ArrayList<>();
+    TopMovieAdapter adapter;
     Context context;
-    RecyclerView recyclerView;
+    ViewPager2 viewPager2;
 
-    public GenreVolley(Context context, RequestQueue requestQueue, RecyclerView recyclerView) {
+    public TopMovieVolley(Context context, RequestQueue requestQueue, ViewPager2 viewPager2) {
         this.context = context;
         this.requestQueue = requestQueue;
-        this.recyclerView = recyclerView;
+        this.viewPager2 = viewPager2;
     }
 
     public void setRequestQueue() {
 
+        Log.e("LInk" , link);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, link, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -47,19 +48,19 @@ public class GenreVolley {
                     JSONArray jsonArray = response.getJSONArray("movie_streaming");
                     for (int i = 0; jsonArray.length() > 0; i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
-                        GenreModel genreModel = new GenreModel();
+                        TopMovieModel topMovieModel = new TopMovieModel();
 
                         String id = jsonObject.getString(volleyApp.ID);
                         String name = jsonObject.getString(volleyApp.NAME);
                         String img = jsonObject.getString(volleyApp.IMG);
 
-                        genreModel.setId(id);
-                        genreModel.setName(name);
-                        genreModel.setImg(img);
+                        topMovieModel.setId(id);
+                        topMovieModel.setName(name);
+                        topMovieModel.setImg(img);
 
-                        list.add(genreModel);
-                        adapter = new GenreMainAdapter(list);
-                        recyclerView.setAdapter(adapter);
+                        list.add(topMovieModel);
+                        adapter = new TopMovieAdapter(list);
+                        viewPager2.setAdapter(adapter);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

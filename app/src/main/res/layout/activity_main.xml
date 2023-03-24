@@ -1,226 +1,247 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
 
-
-    <!--AppBar-->
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:gravity="center"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content">
 
-        <TextView
+
+        <!--AppBar-->
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="?attr/actionBarSize"
             android:gravity="center"
-            android:text="@string/app_name"
-            android:textStyle="bold" />
-
-
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <!--Slider-->
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/vp_main_slider"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_240sdp"
-        android:layout_marginBottom="@dimen/_8sdp"
-        android:background="@color/white"
-        android:elevation="@dimen/_8sdp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appbar" />
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tabLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vp_main_slider"
-        app:tabBackground="@drawable/bg_tabs"
-        app:tabGravity="center"
-        app:tabIndicatorHeight="0dp" />
-
-    <!--Genre-->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/rl_genre_watchAll"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/_8sdp"
-        app:cardCornerRadius="@dimen/_10sdp"
-        app:cardElevation="@dimen/_10sdp"
-        app:cardPreventCornerOverlap="true"
-        app:cardUseCompatPadding="false"
-        app:layout_constraintStart_toStartOf="@+id/main_left_guideLine"
-        app:layout_constraintTop_toBottomOf="@id/tabLayout">
-
-        <RelativeLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/genre_radius">
-
-
-            <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/iv_main_genre"
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_55sdp"
-                android:clickable="true"
-                android:focusable="true"
-                android:scaleType="fitXY"
-                android:src="@drawable/genre"
-                app:riv_corner_radius="@dimen/_10sdp" />
-
-            <com.makeramen.roundedimageview.RoundedImageView
-
-                android:layout_width="@dimen/_70sdp"
-                android:layout_height="@dimen/_55sdp"
-                android:alpha="0.6"
-                android:background="@drawable/genre_radius"
-                android:elevation="@dimen/_2sdp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/tv_genre_tittle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/app_name"
+                android:textStyle="bold" />
+
+
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <!--Slider-->
+        <androidx.viewpager.widget.ViewPager
+            android:id="@+id/vp_main_slider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_240sdp"
+            android:layout_marginBottom="@dimen/_8sdp"
+            android:background="@color/white"
+            android:elevation="@dimen/_8sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/vp_main_slider"
+            app:tabBackground="@drawable/bg_tabs"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp" />
+
+        <!--Genre-->
+        <androidx.cardview.widget.CardView
+            android:id="@+id/rl_genre_watchAll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:background="@color/white"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:cardElevation="@dimen/_10sdp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="false"
+            app:layout_constraintStart_toStartOf="@+id/main_left_guideLine"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout">
+
+            <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
+                android:background="@drawable/genre_radius">
+
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/iv_main_genre"
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_55sdp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/genre"
+                    app:riv_corner_radius="@dimen/_10sdp" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+
+                    android:layout_width="@dimen/_70sdp"
+                    android:layout_height="@dimen/_55sdp"
+                    android:alpha="0.6"
+                    android:background="@drawable/genre_radius"
+                    android:elevation="@dimen/_2sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv_genre_tittle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
+                    android:elevation="@dimen/_20sdp"
+                    android:fontFamily="@font/iranian_sans_bold"
+                    android:gravity="center"
+                    android:lineHeight="@dimen/_30sdp"
+                    android:padding="@dimen/_2sdp"
+                    android:text="مشاهده همه"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_main_genre"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@+id/main_right_guidLine"
+            app:layout_constraintStart_toEndOf="@+id/rl_genre_watchAll"
+            app:layout_constraintTop_toBottomOf="@id/tabLayout" />
+        <!--Top Movie Text-->
+        <RelativeLayout
+            android:id="@+id/rl_main_topMovie"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/main_right_guidLine"
+            app:layout_constraintStart_toStartOf="@+id/main_left_guideLine"
+            app:layout_constraintTop_toBottomOf="@id/rv_main_genre">
+
+            <View
+                android:id="@+id/blue_line"
+                android:layout_width="@dimen/_4sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_alignBaseline="@id/tv_main_topMovieTxt"
+                android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-                android:elevation="@dimen/_20sdp"
+                android:background="@color/light_blue_700" />
+
+
+            <TextView
+
+                android:id="@+id/tv_main_topMovieTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                android:layout_toStartOf="@id/blue_line"
                 android:fontFamily="@font/iranian_sans_bold"
-                android:gravity="center"
-                android:lineHeight="@dimen/_30sdp"
-                android:padding="@dimen/_2sdp"
-                android:text="مشاهده همه"
-                android:textColor="@color/white"
-                android:textSize="@dimen/_12ssp"
+                android:text="@string/topMovie"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold"
+                tools:ignore="RelativeOverlap" />
+
+            <TextView
+                android:id="@+id/tv_watchAllMovies"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="24dp"
+                android:text="@string/more"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_10ssp"
                 android:textStyle="bold" />
+
+
         </RelativeLayout>
+        <!--Top Movie ViewPager2-->
+        <androidx.viewpager2.widget.ViewPager2
+            android:id="@+id/vp_main_topMovie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/_30sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rl_main_topMovie" />
+        <!--Top Series Text-->
+        <RelativeLayout
+            android:id="@+id/rl_main_topSeries"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/main_right_guidLine"
+            app:layout_constraintStart_toStartOf="@+id/main_left_guideLine"
+            app:layout_constraintTop_toBottomOf="@id/vp_main_topMovie">
 
-    </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/tv_main_topSeriesTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="24dp"
+                android:fontFamily="@font/iranian_sans_bold"
+                android:text="@string/topSeries"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_14ssp"
+                android:textStyle="bold"
+                tools:ignore="RelativeOverlap" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_main_genre"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toStartOf="@+id/main_right_guidLine"
-        app:layout_constraintStart_toEndOf="@+id/rl_genre_watchAll"
-        app:layout_constraintTop_toBottomOf="@id/tabLayout" />
-    <!--Top Movie Text-->
-    <RelativeLayout
-        android:id="@+id/rl_main_topMovie"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toStartOf="@+id/main_right_guidLine"
-        app:layout_constraintStart_toStartOf="@+id/main_left_guideLine"
-        app:layout_constraintTop_toBottomOf="@id/rv_main_genre">
+            <TextView
+                android:id="@+id/tv_watchAllSeries"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="24dp"
+                android:text="@string/more"
+                android:textColor="@color/text_color"
+                android:textSize="@dimen/_10ssp"
+                android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tv_main_topMovieTxt"
+
+        </RelativeLayout>
+        <!--Top Movie RecyclerView-->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_main_topSeries"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rl_main_topSeries" />
+        <!--GuidLines-->
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/main_right_guidLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/iranian_sans_bold"
-            android:text="@string/topMovie"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/_14ssp"
-            android:textStyle="bold"
-            tools:ignore="RelativeOverlap" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="@dimen/_20sdp" />
 
-        <TextView
-            android:id="@+id/tv_watchAllMovies"
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/main_left_guideLine"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="24dp"
-            android:text="@string/more"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/_10ssp"
-            android:textStyle="bold" />
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="@dimen/_10sdp" />
 
 
-    </RelativeLayout>
-    <!--Top Movie RecyclerView-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_main_topMovie"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rl_main_topMovie" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!--Top Series Text-->
-    <RelativeLayout
-        android:id="@+id/rl_main_topSeries"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toStartOf="@+id/main_right_guidLine"
-        app:layout_constraintStart_toStartOf="@+id/main_left_guideLine"
-        app:layout_constraintTop_toBottomOf="@id/rv_main_topMovie">
-
-        <TextView
-            android:id="@+id/tv_main_topSeriesTxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="24dp"
-            android:fontFamily="@font/iranian_sans_bold"
-            android:text="@string/topSeries"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/_14ssp"
-            android:textStyle="bold"
-            tools:ignore="RelativeOverlap" />
-
-        <TextView
-            android:id="@+id/tv_watchAllSeries"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_centerVertical="true"
-            android:layout_marginTop="24dp"
-            android:text="@string/more"
-            android:textColor="@color/text_color"
-            android:textSize="@dimen/_10ssp"
-            android:textStyle="bold" />
-
-
-    </RelativeLayout>
-    <!--Top Movie RecyclerView-->
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_main_topSeries"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/rl_main_topSeries" />
-    <!--GuidLines-->
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/main_right_guidLine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_end="@dimen/_20sdp" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/main_left_guideLine"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_begin="@dimen/_10sdp" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
