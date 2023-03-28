@@ -10,7 +10,7 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
-import com.example.bbc.adapter.TopMovieAdapter;
+import com.example.bbc.adapter.TopMovieMainAdapter;
 import com.example.bbc.model.TopMovieModel;
 
 import org.json.JSONArray;
@@ -27,7 +27,7 @@ public class TopMovieVolley {
 
     RequestQueue requestQueue;
     List<TopMovieModel> list = new ArrayList<>();
-    TopMovieAdapter adapter;
+    TopMovieMainAdapter adapter;
     Context context;
     ViewPager2 viewPager2;
 
@@ -39,7 +39,6 @@ public class TopMovieVolley {
 
     public void setRequestQueue() {
 
-        Log.e("LInk" , link);
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, link, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
@@ -53,13 +52,15 @@ public class TopMovieVolley {
                         String id = jsonObject.getString(volleyApp.ID);
                         String name = jsonObject.getString(volleyApp.NAME);
                         String img = jsonObject.getString(volleyApp.IMG);
+                        String description = jsonObject.getString(volleyApp.DESCRIPTION);
 
                         topMovieModel.setId(id);
                         topMovieModel.setName(name);
                         topMovieModel.setImg(img);
+                        topMovieModel.setDescription(description);
 
                         list.add(topMovieModel);
-                        adapter = new TopMovieAdapter(list);
+                        adapter = new TopMovieMainAdapter(list);
                         viewPager2.setAdapter(adapter);
                     }
                 } catch (JSONException e) {

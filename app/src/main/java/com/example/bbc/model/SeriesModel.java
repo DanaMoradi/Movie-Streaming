@@ -1,8 +1,8 @@
 package com.example.bbc.model;
 
-public class TopMovieModel {
+public class SeriesModel {
 
-    private String id, name, img, director, rate_imdb, published, time, category_name, description;
+    private String id, name, img, director, rate_imdb, published, time, category_name;
 
     public String getId() {
         return id;
@@ -66,13 +66,5 @@ public class TopMovieModel {
 
     public void setCategory_name(String category_name) {
         this.category_name = category_name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 }

@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    app:cardElevation="@dimen/_8sdp"
+    android:layout_marginHorizontal="@dimen/_10sdp"
+    app:cardMaxElevation="@dimen/_8sdp"
     app:cardPreventCornerOverlap="true">
 
 
@@ -14,34 +14,35 @@
         android:layout_height="match_parent">
 
         <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/iv_main_topMain"
+            android:id="@+id/iv_main_series"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_200sdp"
+            android:layout_height="@dimen/_160sdp"
             android:scaleType="fitXY"
             android:src="@drawable/genre"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:riv_corner_radius_top_left="@dimen/_10sdp"
-            app:riv_corner_radius_top_right="@dimen/_10sdp" />
+            app:riv_corner_radius="@dimen/_10sdp" />
 
         <ImageView
-            android:id="@+id/iv_topMovie_bookmark"
+            android:id="@+id/iv_series_bookmark"
             android:layout_width="@dimen/_32sdp"
             android:layout_height="@dimen/_32sdp"
             android:elevation="@dimen/_10sdp"
             android:src="@drawable/ic_baseline_bookmark_add_24"
-            app:layout_constraintEnd_toEndOf="@id/iv_main_topMain"
-            app:layout_constraintTop_toTopOf="@id/iv_main_topMain" />
+            app:layout_constraintEnd_toEndOf="@id/iv_main_series"
+            app:layout_constraintTop_toTopOf="@id/iv_main_series" />
+
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:background="@drawable/gradiant_shadow_bg"
-            app:layout_constraintBottom_toBottomOf="@id/iv_main_topMain"
-            app:layout_constraintTop_toTopOf="@id/iv_main_topMain" />
+            app:layout_constraintBottom_toBottomOf="@id/iv_main_series"
+            app:layout_constraintTop_toTopOf="@id/iv_main_series" />
 
         <TextView
-            android:id="@+id/tv_main_topMovieName"
+            android:id="@+id/tv_series_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_12sdp"
@@ -51,32 +52,14 @@
             android:paddingEnd="@dimen/_2sdp"
             android:textColor="@color/white"
             android:textSize="@dimen/_16ssp"
-            app:layout_constraintBottom_toBottomOf="@id/iv_main_topMain"
-            app:layout_constraintEnd_toStartOf="@+id/btn_topMovie"
-            app:layout_constraintStart_toStartOf="@id/iv_main_topMain"
+            app:layout_constraintBottom_toBottomOf="@id/iv_main_series"
+            app:layout_constraintEnd_toStartOf="@+id/btn_main_series"
+            app:layout_constraintStart_toStartOf="@id/iv_main_series"
             tools:ignore="RelativeOverlap"
             tools:text="Movie Name" />
 
-        <TextView
-            android:id="@+id/tv_topMovie_description"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:ellipsize="end"
-            android:fontFamily="@font/iranian_sans"
-            android:gravity="start"
-            android:lineHeight="@dimen/_20sdp"
-            android:maxLines="3"
-            android:paddingHorizontal="@dimen/_10sdp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_11ssp"
-            android:visibility="gone"
-            app:layout_constraintBottom_toTopOf="@id/btn_topMovie"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            tools:ignore="UnusedAttribute" />
-
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btn_topMovie"
+            android:id="@+id/btn_main_series"
             android:layout_width="@dimen/_24sdp"
             android:layout_height="@dimen/_24sdp"
             android:layout_margin="@dimen/_8sdp"
@@ -89,9 +72,8 @@
             android:textColor="@color/white"
             android:textSize="@dimen/_12ssp"
             app:fabCustomSize="@dimen/_24sdp"
-            app:layout_constraintBottom_toBottomOf="@id/iv_main_topMain"
-            app:layout_constraintEnd_toEndOf="@id/iv_main_topMain" />
-
+            app:layout_constraintBottom_toBottomOf="@id/iv_main_series"
+            app:layout_constraintEnd_toEndOf="@id/iv_main_series" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

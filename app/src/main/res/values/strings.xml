@@ -6,6 +6,8 @@
     <string name="topSeries">سریال های برتر</string>
     <string name="todo">TODO</string>
     <string name="watchMovie">مشاهده فیلم</string>
+    <string name="moviesStatics">آمار فیلم ها</string>
+    <string name="copyWrite">تمامی حقوق مادی و معنوی متعلق به Movie Streaming می‌باشد</string>
 
 
 </resources>

@@ -3,6 +3,7 @@ package com.example.bbc.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -14,13 +15,13 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class TopMovieAdapter extends RecyclerView.Adapter<TopMovieAdapter.TopMovieViewHolder> {
+public class TopMovieMainAdapter extends RecyclerView.Adapter<TopMovieMainAdapter.TopMovieViewHolder> {
 
 
     List<TopMovieModel> list;
     ItemTopMovieBinding binding;
 
-    public TopMovieAdapter(List<TopMovieModel> list) {
+    public TopMovieMainAdapter(List<TopMovieModel> list) {
         this.list = list;
     }
 
@@ -52,9 +53,24 @@ public class TopMovieAdapter extends RecyclerView.Adapter<TopMovieAdapter.TopMov
         }
 
         private void onBindView(TopMovieModel item) {
-            Picasso.get().load(item.getImg()).into(view.ivMainTopMain);
+
+            ImageView img = view.ivMainTopMain;
             view.tvMainTopMovieName.setText(item.getName());
+            view.tvTopMovieDescription.setText(item.getDescription());
+
             String movieName = view.tvMainTopMovieName.getText().toString();
+            Picasso.get().load(item.getImg()).into(img);
+
+            img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (view.tvTopMovieDescription.getVisibility() == View.VISIBLE) {
+                        view.tvTopMovieDescription.setVisibility(View.GONE);
+                    } else {
+                        view.tvTopMovieDescription.setVisibility(View.VISIBLE);
+                    }
+                }
+            });
             view.btnTopMovie.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

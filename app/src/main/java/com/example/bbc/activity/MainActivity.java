@@ -15,12 +15,15 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.example.bbc.adapter.GenreMainAdapter;
-import com.example.bbc.adapter.TopMovieAdapter;
+import com.example.bbc.adapter.SeriesMainAdapter;
+import com.example.bbc.adapter.TopMovieMainAdapter;
 import com.example.bbc.databinding.ActivityMainBinding;
 import com.example.bbc.db.volley.GenreVolley;
+import com.example.bbc.db.volley.SeriesVolley;
 import com.example.bbc.db.volley.SliderVolley;
 import com.example.bbc.db.volley.TopMovieVolley;
 import com.example.bbc.model.GenreModel;
+import com.example.bbc.model.SeriesModel;
 import com.example.bbc.model.SliderModel;
 import com.example.bbc.model.TopMovieModel;
 
@@ -52,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
         setSliderTimer();
         setGenre();
         setTopMovie();
+        setSeries();
 
 
     }
@@ -65,6 +69,8 @@ public class MainActivity extends AppCompatActivity {
         SliderVolley sliderVolley = new SliderVolley(this, requestQueue, slider, list);
         sliderVolley.setRequestQueue();
         binding.tabLayout.setupWithViewPager(slider, true);
+
+
     }
 
     private void setGenre() {
@@ -80,12 +86,13 @@ public class MainActivity extends AppCompatActivity {
     private void setTopMovie() {
         List<TopMovieModel> list = new ArrayList<>();
         ViewPager2 viewPager2 = binding.vpMainTopMovie;
-        TopMovieAdapter adapter = new TopMovieAdapter(list);
-        viewPager2.setOffscreenPageLimit(3);
+        TopMovieMainAdapter adapter = new TopMovieMainAdapter(list);
+        viewPager2.setOffscreenPageLimit(13);
         viewPager2.setClipToPadding(false);
         viewPager2.setClipChildren(false);
         viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
         viewPager2.setAdapter(adapter);
+
 
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
         compositePageTransformer.addTransformer(new MarginPageTransformer(25));
@@ -98,11 +105,22 @@ public class MainActivity extends AppCompatActivity {
         });
         viewPager2.setPageTransformer(compositePageTransformer);
 
-
         TopMovieVolley topMovieVolley = new TopMovieVolley(this, requestQueue, viewPager2);
         topMovieVolley.setRequestQueue();
 
 
+    }
+
+    private void setSeries() {
+        RecyclerView seriesRV = binding.rvMainSeries;
+        List<SeriesModel> list = new ArrayList<>();
+        seriesRV.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        seriesRV.setClipToPadding(false);
+        seriesRV.setHasFixedSize(true);
+        SeriesMainAdapter adapter = new SeriesMainAdapter(list);
+        seriesRV.setAdapter(adapter);
+        SeriesVolley seriesVolley = new SeriesVolley(this, requestQueue, seriesRV);
+        seriesVolley.setRequestQueue();
     }
 
     //Timer For Slider

@@ -20,17 +20,15 @@
 
         android:layout_width="@dimen/_70sdp"
         android:layout_height="@dimen/_55sdp"
-        android:alpha="0.6"
-        android:background="@drawable/genre_radius"
+        android:background="@drawable/gradiant_shadow_bg"
         android:elevation="@dimen/_2sdp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_genre_tittle"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:elevation="@dimen/_20sdp"
         android:fontFamily="sans-serif-medium"
         android:gravity="center"
@@ -41,7 +39,6 @@
         app:layout_constraintBottom_toBottomOf="@+id/iv_main_genre"
         app:layout_constraintEnd_toEndOf="@+id/iv_main_genre"
         app:layout_constraintStart_toStartOf="@id/iv_main_genre"
-        app:layout_constraintTop_toTopOf="@+id/iv_main_genre"
         tools:text="Movie" />
 
 
