@@ -1,30 +1,20 @@
 package com.example.bbc.model;
 
+import lombok.Getter;
+import lombok.Setter;
+
 public class GenreModel {
 
-    String id , name  , img;
+    @Getter
+    @Setter
+    private Long id;
 
-    public String getId() {
-        return id;
-    }
+    @Getter
+    @Setter
+    private String name;
+    @Getter
+    @Setter
+    private String img;
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getImg() {
-        return img;
-    }
-
-    public void setImg(String img) {
-        this.img = img;
-    }
 }

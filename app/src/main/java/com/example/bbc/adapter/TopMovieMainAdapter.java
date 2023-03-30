@@ -61,6 +61,7 @@ public class TopMovieMainAdapter extends RecyclerView.Adapter<TopMovieMainAdapte
             String movieName = view.tvMainTopMovieName.getText().toString();
             Picasso.get().load(item.getImg()).into(img);
 
+
             img.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -77,6 +78,8 @@ public class TopMovieMainAdapter extends RecyclerView.Adapter<TopMovieMainAdapte
                     Toast.makeText(v.getContext(), movieName, Toast.LENGTH_SHORT).show();
                 }
             });
+
+
         }
 
     }

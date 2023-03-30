@@ -1,16 +1,15 @@
 package com.example.bbc.db.volley;
 
-import android.content.Context;
 import android.util.Log;
 
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.bbc.adapter.TopMovieMainAdapter;
+import com.example.bbc.application.app;
 import com.example.bbc.model.TopMovieModel;
 
 import org.json.JSONArray;
@@ -23,17 +22,12 @@ import java.util.List;
 public class TopMovieVolley {
 
 
-    String link = volleyApp.LINK + "getMovieInformation.php?" + volleyApp.CATEGORY + "=" + volleyApp.CATEGORY_TOP_MOVIE;
-
-    RequestQueue requestQueue;
+    String link = app.LINK + "getMovieInformation.php?" + app.CATEGORY + "=" + app.CATEGORY_TOP_MOVIE;
     List<TopMovieModel> list = new ArrayList<>();
     TopMovieMainAdapter adapter;
-    Context context;
     ViewPager2 viewPager2;
 
-    public TopMovieVolley(Context context, RequestQueue requestQueue, ViewPager2 viewPager2) {
-        this.context = context;
-        this.requestQueue = requestQueue;
+    public TopMovieVolley(ViewPager2 viewPager2) {
         this.viewPager2 = viewPager2;
     }
 
@@ -42,26 +36,27 @@ public class TopMovieVolley {
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET, link, null, new Response.Listener<JSONObject>() {
             @Override
             public void onResponse(JSONObject response) {
-
                 try {
                     JSONArray jsonArray = response.getJSONArray("movie_streaming");
-                    for (int i = 0; jsonArray.length() > 0; i++) {
+                    for (int i = 0; jsonArray.length() > i; i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         TopMovieModel topMovieModel = new TopMovieModel();
 
-                        String id = jsonObject.getString(volleyApp.ID);
-                        String name = jsonObject.getString(volleyApp.NAME);
-                        String img = jsonObject.getString(volleyApp.IMG);
-                        String description = jsonObject.getString(volleyApp.DESCRIPTION);
+                        Long id = jsonObject.getLong(app.ID);
+                        String name = jsonObject.getString(app.NAME);
+                        String img = jsonObject.getString(app.IMG);
+                        String description = jsonObject.getString(app.DESCRIPTION);
 
                         topMovieModel.setId(id);
                         topMovieModel.setName(name);
                         topMovieModel.setImg(img);
                         topMovieModel.setDescription(description);
 
+
                         list.add(topMovieModel);
                         adapter = new TopMovieMainAdapter(list);
                         viewPager2.setAdapter(adapter);
+                        viewPager2.setCurrentItem(1, false);
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -74,7 +69,7 @@ public class TopMovieVolley {
                 Log.e("Error", error.getMessage());
             }
         });
-        requestQueue.add(jsonObjectRequest);
+        app.getInstance().addToRequestQueue(jsonObjectRequest);
     }
 
 }

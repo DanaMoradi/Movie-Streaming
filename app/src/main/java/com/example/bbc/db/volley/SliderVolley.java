@@ -1,15 +1,13 @@
 package com.example.bbc.db.volley;
 
-import android.content.Context;
-
 import androidx.viewpager.widget.ViewPager;
 
 import com.android.volley.Request;
-import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.example.bbc.adapter.SliderAdapter;
+import com.example.bbc.application.app;
 import com.example.bbc.model.SliderModel;
 
 import org.json.JSONArray;
@@ -20,17 +18,12 @@ import java.util.List;
 
 public class SliderVolley {
 
-    String link = volleyApp.LINK + "getSlider.php";
-
-    RequestQueue requestQueue;
+    String link = app.LINK + "getSlider.php";
     List<SliderModel> list;
     SliderAdapter sliderAdapter;
-    Context context;
     ViewPager viewPager;
 
-    public SliderVolley(Context context, RequestQueue requestQueue, ViewPager viewPager, List<SliderModel> list) {
-        this.context = context;
-        this.requestQueue = requestQueue;
+    public SliderVolley(ViewPager viewPager, List<SliderModel> list) {
         this.viewPager = viewPager;
         this.list = list;
     }
@@ -43,13 +36,14 @@ public class SliderVolley {
 
                 try {
                     JSONArray jsonArray = response.getJSONArray("movie_streaming");
+
                     for (int i = 0; jsonArray.length() > 0; i++) {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         SliderModel sliderModel = new SliderModel();
 
-                        String id = jsonObject.getString(volleyApp.ID);
-                        String name = jsonObject.getString(volleyApp.NAME);
-                        String img = jsonObject.getString(volleyApp.IMG);
+                        Long id = jsonObject.getLong(app.ID);
+                        String name = jsonObject.getString(app.NAME);
+                        String img = jsonObject.getString(app.IMG);
 
                         sliderModel.setId(id);
                         sliderModel.setName(name);
@@ -70,7 +64,7 @@ public class SliderVolley {
             public void onErrorResponse(VolleyError error) {
             }
         });
-        requestQueue.add(jsonObjectRequest);
+        app.getInstance().addToRequestQueue(jsonObjectRequest);
     }
 
 }
