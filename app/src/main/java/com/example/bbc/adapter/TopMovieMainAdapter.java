@@ -33,6 +33,7 @@ public class TopMovieMainAdapter extends RecyclerView.Adapter<TopMovieMainAdapte
         return new TopMovieViewHolder(binding);
     }
 
+
     @Override
     public void onBindViewHolder(@NonNull TopMovieViewHolder holder, int position) {
         holder.onBindView(list.get(position));
@@ -52,6 +53,7 @@ public class TopMovieMainAdapter extends RecyclerView.Adapter<TopMovieMainAdapte
             view = v;
         }
 
+
         private void onBindView(TopMovieModel item) {
 
             ImageView img = view.ivMainTopMain;
@@ -60,7 +62,6 @@ public class TopMovieMainAdapter extends RecyclerView.Adapter<TopMovieMainAdapte
 
             String movieName = view.tvMainTopMovieName.getText().toString();
             Picasso.get().load(item.getImg()).into(img);
-
 
             img.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -81,6 +82,7 @@ public class TopMovieMainAdapter extends RecyclerView.Adapter<TopMovieMainAdapte
 
 
         }
-
     }
+
+
 }

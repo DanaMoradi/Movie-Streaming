@@ -1,8 +1,10 @@
 package com.example.bbc.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -12,6 +14,7 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.bbc.application.app;
 import com.example.bbc.databinding.ActivityMainBinding;
 import com.example.bbc.db.volley.GenreVolley;
 import com.example.bbc.db.volley.SeriesVolley;
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
         setGenre();
         setTopMovie();
         setSeries();
+        setWatchAll();
 
 
     }
@@ -73,7 +77,6 @@ public class MainActivity extends AppCompatActivity {
         viewPager2.setClipChildren(false);
         viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
 
-
         CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
         compositePageTransformer.addTransformer(new MarginPageTransformer(25));
         compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
@@ -85,9 +88,8 @@ public class MainActivity extends AppCompatActivity {
         });
         viewPager2.setPageTransformer(compositePageTransformer);
 
-
         TopMovieVolley topMovieVolley = new TopMovieVolley(viewPager2);
-        topMovieVolley.setRequestQueue();
+        topMovieVolley.setRequestQueueLimited();
 
     }
 
@@ -100,6 +102,22 @@ public class MainActivity extends AppCompatActivity {
         SeriesVolley seriesVolley = new SeriesVolley(seriesRV);
         seriesVolley.setRequestQueue();
     }
+
+    private void setWatchAll() {
+
+        TextView seeMovie = binding.tvWatchAllMovies;
+        seeMovie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WatchAllActivity.class);
+                intent.putExtra(app.ALL_MOVIE, app.ALL_MOVIE);
+                startActivity(intent);
+            }
+        });
+
+
+    }
+
 
     //Timer For Slider
     private void setSliderTimer() {

@@ -8,6 +8,13 @@
     <string name="watchMovie">مشاهده فیلم</string>
     <string name="moviesStatics">آمار فیلم ها</string>
     <string name="copyWrite">تمامی حقوق مادی و معنوی متعلق به Movie Streaming می‌باشد</string>
+    <string name="Movie">فیلم</string>
+    <string name="static_movie_num">24</string>
+    <string name="series">سریال</string>
+    <string name="static_series_num">41</string>
+    <string name="animation">انیمیشن</string>
+    <string name="static_animation_num">12</string>
+    <string name="Director">کارگردان :</string>
 
 
 </resources>

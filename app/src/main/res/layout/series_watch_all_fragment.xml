@@ -5,13 +5,11 @@
     android:layout_height="match_parent"
     android:background="@color/warm_gray_900">
 
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/iv_slider"
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_fragment_watchAll_movie"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:adjustViewBounds="true"
-        android:contentDescription="@string/todo"
-        android:scaleType="fitXY"
+        android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
