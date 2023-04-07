@@ -1,446 +1,469 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginBottom="@dimen/_50sdp"
     android:background="@color/warm_gray_900"
     android:scrollbars="none"
     tools:context=".activity.MainActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_rawRes="@raw/movie_intro" />
+
+
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-
-        <!--AppBar-->
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_mainContainer"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@color/warm_gray_900"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_height="wrap_content"
+            android:visibility="gone">
 
-            <TextView
+
+            <!--AppBar-->
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbar"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="?attr/actionBarSize"
+                android:background="@color/warm_gray_900"
                 android:gravity="center"
-                android:text="@string/app_name"
-                android:textColor="@color/text_white"
-                android:textStyle="bold" />
-        </com.google.android.material.appbar.AppBarLayout>
-        <!--Slider-->
-        <androidx.viewpager.widget.ViewPager
-            android:id="@+id/vp_main_slider"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_180sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/appbar"
-            tools:ignore="SpeakableTextPresentCheck" />
-
-        <com.google.android.material.tabs.TabLayout
-            android:id="@+id/tabLayout"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:background="@color/warm_gray_900"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/vp_main_slider"
-            app:tabBackground="@drawable/bg_tabs"
-            app:tabGravity="center"
-            app:tabIndicatorHeight="0dp"
-            tools:ignore="SpeakableTextPresentCheck" />
-        <!--Genre-->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_genre_watchAll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_8sdp"
-            android:background="@drawable/gradiant_main_bg"
-            android:clickable="true"
-            android:focusable="true"
-            app:cardCornerRadius="@dimen/_10sdp"
-            app:cardElevation="@dimen/_10sdp"
-            app:cardPreventCornerOverlap="true"
-            app:cardUseCompatPadding="false"
-            app:layout_constraintEnd_toEndOf="@id/main_right_guidLine"
-            app:layout_constraintTop_toBottomOf="@id/tabLayout">
-
-            <RelativeLayout
-                android:id="@+id/rl_genre_watchAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/genre_radius">
-
-
-                <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/iv_main_genre"
-                    android:layout_width="@dimen/_70sdp"
-                    android:layout_height="@dimen/_55sdp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:scaleType="fitXY"
-                    android:src="@drawable/genre"
-                    app:riv_corner_radius="@dimen/_10sdp"
-                    tools:ignore="SpeakableTextPresentCheck" />
-
-                <com.makeramen.roundedimageview.RoundedImageView
-
-                    android:layout_width="@dimen/_70sdp"
-                    android:layout_height="@dimen/_55sdp"
-                    android:alpha="0.6"
-                    android:background="@drawable/genre_radius"
-                    android:elevation="@dimen/_2sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
-                    android:id="@+id/tv_genre_tittle"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:elevation="@dimen/_20sdp"
-                    android:fontFamily="@font/iranian_sans_bold"
                     android:gravity="center"
-                    android:lines="1"
-                    android:text="@string/more"
+                    android:text="@string/app_name"
                     android:textColor="@color/text_white"
-                    android:textSize="@dimen/_10ssp"
                     android:textStyle="bold" />
-            </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_main_genre"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:elevation="@dimen/_10sdp"
-            app:layout_constraintEnd_toStartOf="@+id/cv_genre_watchAll"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tabLayout" />
-        <!--Top Movie Text-->
-        <RelativeLayout
-            android:id="@+id/rl_main_topMovie"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_14sdp"
-            android:background="@color/gray_900"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toStartOf="@+id/main_right_guidLine"
-            app:layout_constraintStart_toStartOf="@+id/main_left_guideLine"
-            app:layout_constraintTop_toBottomOf="@id/rv_main_genre">
-
-            <View
-                android:id="@+id/blue_line"
-                android:layout_width="@dimen/_4sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_alignBaseline="@id/tv_main_topMovieTxt"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:background="@color/light_blue_700" />
-
-
-            <TextView
-                android:id="@+id/tv_main_topMovieTxt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:layout_toStartOf="@id/blue_line"
-                android:fontFamily="@font/iranian_sans_bold"
-                android:text="@string/topMovie"
-                android:textColor="@color/text_white"
-                android:textSize="@dimen/_12ssp"
-                android:textStyle="bold"
-                tools:ignore="RelativeOverlap" />
-
-            <TextView
-                android:id="@+id/tv_watchAllMovies"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:text="@string/more"
-                android:textColor="#0091EA"
-                android:textSize="@dimen/_10ssp"
-                android:textStyle="bold" />
-
-
-        </RelativeLayout>
-        <!--Top Movie ViewPager2-->
-        <androidx.viewpager2.widget.ViewPager2
-            android:id="@+id/vp_main_topMovie"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/gray_900"
-            android:layoutDirection="rtl"
-            android:paddingHorizontal="@dimen/_90sdp"
-            android:paddingBottom="@dimen/_4sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rl_main_topMovie" />
-        <!--Top Series Text-->
-        <RelativeLayout
-            android:id="@+id/rl_main_topSeries"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_14sdp"
-            android:background="@color/gray_900"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toStartOf="@+id/main_right_guidLine"
-            app:layout_constraintStart_toStartOf="@+id/main_left_guideLine"
-            app:layout_constraintTop_toBottomOf="@id/vp_main_topMovie">
-
-            <View
-                android:id="@+id/series_blue_line"
-                android:layout_width="@dimen/_4sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_alignBaseline="@id/tv_main_series"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:background="@color/light_blue_700" />
-
-
-            <TextView
-                android:id="@+id/tv_main_series"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:layout_toStartOf="@id/series_blue_line"
-                android:fontFamily="@font/iranian_sans_bold"
-                android:text="@string/topSeries"
-                android:textColor="@color/text_white"
-                android:textSize="@dimen/_12ssp"
-                android:textStyle="bold"
-                tools:ignore="RelativeOverlap" />
-
-            <TextView
-                android:id="@+id/tv_watchAllSeries"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                android:text="@string/more"
-                android:textColor="@color/light_blue_700"
-                android:textSize="@dimen/_10ssp"
-                android:textStyle="bold" />
-
-        </RelativeLayout>
-        <!--Top Series RecyclerView-->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_main_Series"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/gray_900"
-            android:padding="@dimen/_15sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/rl_main_topSeries" />
-        <!--Statics Text-->
-        <RelativeLayout
-            android:id="@+id/rl_main_static"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_14sdp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toStartOf="@+id/main_right_guidLine"
-            app:layout_constraintStart_toStartOf="@+id/main_left_guideLine"
-            app:layout_constraintTop_toBottomOf="@id/rv_main_Series">
-
-            <View
-                android:id="@+id/static_blue_line"
-                android:layout_width="@dimen/_4sdp"
-                android:layout_height="@dimen/_20sdp"
-                android:layout_alignBaseline="@id/tv_main_static"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:background="@color/light_blue_700" />
-
-
-            <TextView
-                android:id="@+id/tv_main_static"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginEnd="@dimen/_5sdp"
-                android:layout_toStartOf="@id/static_blue_line"
-                android:fontFamily="@font/iranian_sans_bold"
-                android:text="@string/moviesStatics"
-                android:textColor="@color/text_white"
-                android:textSize="@dimen/_12ssp"
-                android:textStyle="bold"
-                tools:ignore="RelativeOverlap" />
-
-        </RelativeLayout>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_static"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintEnd_toEndOf="@id/main_right_guidLine"
-            app:layout_constraintStart_toStartOf="@id/main_left_guideLine"
-            app:layout_constraintTop_toBottomOf="@id/rl_main_static">
-
-            <RelativeLayout
+            </com.google.android.material.appbar.AppBarLayout>
+            <!--Slider-->
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/vp_main_slider"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:padding="@dimen/_20sdp">
+                android:layout_height="@dimen/_180sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/appbar"
+                tools:ignore="SpeakableTextPresentCheck" />
 
-                <TextView
-                    android:id="@+id/static_movie"
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@color/warm_gray_900"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/vp_main_slider"
+                app:tabBackground="@drawable/bg_tabs"
+                app:tabGravity="center"
+                app:tabIndicatorHeight="0dp"
+                tools:ignore="SpeakableTextPresentCheck" />
+            <!--Genre-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cv_genre_watchAll"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:background="@drawable/gradiant_main_bg"
+                android:clickable="true"
+                android:focusable="true"
+                app:cardCornerRadius="@dimen/_10sdp"
+                app:cardElevation="@dimen/_10sdp"
+                app:cardPreventCornerOverlap="true"
+                app:cardUseCompatPadding="false"
+                app:layout_constraintEnd_toEndOf="@id/main_right_guidLine"
+                app:layout_constraintTop_toBottomOf="@id/tabLayout">
+
+                <RelativeLayout
+                    android:id="@+id/rl_genre_watchAll"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:background="@drawable/genre_radius">
+
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+                        android:id="@+id/iv_main_genre"
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_55sdp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/genre"
+                        app:riv_corner_radius="@dimen/_10sdp"
+                        tools:ignore="SpeakableTextPresentCheck" />
+
+                    <com.makeramen.roundedimageview.RoundedImageView
+
+                        android:layout_width="@dimen/_70sdp"
+                        android:layout_height="@dimen/_55sdp"
+                        android:alpha="0.6"
+                        android:background="@drawable/genre_radius"
+                        android:elevation="@dimen/_2sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_genre_tittle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:elevation="@dimen/_20sdp"
+                        android:fontFamily="@font/iranian_sans_bold"
+                        android:gravity="center"
+                        android:lines="1"
+                        android:text="@string/more"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/_10ssp"
+                        android:textStyle="bold" />
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_main_genre"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:elevation="@dimen/_10sdp"
+                app:layout_constraintEnd_toStartOf="@+id/cv_genre_watchAll"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tabLayout" />
+            <!--Top Movie Text-->
+            <RelativeLayout
+                android:id="@+id/rl_main_topMovie"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:background="@color/gray_900"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toStartOf="@+id/main_right_guidLine"
+                app:layout_constraintStart_toStartOf="@+id/main_left_guideLine"
+                app:layout_constraintTop_toBottomOf="@id/rv_main_genre">
+
+                <View
+                    android:id="@+id/blue_line"
+                    android:layout_width="@dimen/_4sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignBaseline="@id/tv_main_topMovieTxt"
                     android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/light_blue_700" />
+
+
+                <TextView
+                    android:id="@+id/tv_main_topMovieTxt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_toStartOf="@id/blue_line"
                     android:fontFamily="@font/iranian_sans_bold"
-                    android:text="@string/Movie"
+                    android:text="@string/topMovie"
                     android:textColor="@color/text_white"
                     android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
                     tools:ignore="RelativeOverlap" />
 
                 <TextView
-                    android:id="@+id/static_movie_num"
+                    android:id="@+id/tv_watchAllMovies"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
-                    android:fontFamily="@font/iranian_sans"
-                    android:text="@string/static_movie_num"
-                    android:textColor="@color/text_white"
-                    android:textSize="@dimen/_12ssp" />
-
-
-                <View
-                    android:id="@+id/divider_ms"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@id/static_movie"
-                    android:layout_marginVertical="@dimen/_5sdp"
-                    android:background="?android:attr/listDivider" />
-
-
-                <TextView
-                    android:id="@+id/static_series"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/divider_ms"
-                    android:layout_alignParentEnd="true"
-                    android:fontFamily="@font/iranian_sans_bold"
-                    android:text="@string/series"
-                    android:textColor="@color/text_white"
-                    android:textSize="@dimen/_12ssp"
+                    android:layout_centerVertical="true"
+                    android:text="@string/more"
+                    android:textColor="#0091EA"
+                    android:textSize="@dimen/_10ssp"
                     android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/static_series_num"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/divider_ms"
-                    android:layout_alignParentStart="true"
-                    android:fontFamily="@font/iranian_sans"
-                    android:text="@string/static_series_num"
-                    android:textColor="@color/text_white"
-                    android:textSize="@dimen/_12ssp" />
-
-                <View
-                    android:id="@+id/divider_sa"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_below="@id/static_series"
-                    android:layout_marginVertical="@dimen/_5sdp"
-                    android:background="?android:attr/listDivider" />
-
-
-                <TextView
-                    android:id="@+id/static_animation"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/divider_sa"
-                    android:layout_alignParentEnd="true"
-                    android:fontFamily="@font/iranian_sans_bold"
-                    android:text="@string/animation"
-                    android:textColor="@color/text_white"
-                    android:textSize="@dimen/_12ssp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/static_animation_num"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/divider_sa"
-                    android:layout_alignParentStart="true"
-                    android:fontFamily="@font/iranian_sans"
-                    android:text="@string/static_animation_num"
-                    android:textColor="@color/text_white"
-                    android:textSize="@dimen/_12ssp" />
 
 
             </RelativeLayout>
-
-        </androidx.cardview.widget.CardView>
-        <!--Copy Write-->
-        <androidx.cardview.widget.CardView
-            android:id="@+id/card_copyWrite"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/main_right_guidLine"
-            app:layout_constraintStart_toStartOf="@id/main_left_guideLine"
-            app:layout_constraintTop_toBottomOf="@id/card_static">
-
-            <RelativeLayout
+            <!--Top Movie ViewPager2-->
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/vp_main_topMovie"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/gray_900"
+                android:layoutDirection="rtl"
+                android:paddingHorizontal="@dimen/_90sdp"
+                android:paddingBottom="@dimen/_4sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rl_main_topMovie" />
+            <!--Top Series Text-->
+            <RelativeLayout
+                android:id="@+id/rl_main_topSeries"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:background="@color/gray_900"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toStartOf="@+id/main_right_guidLine"
+                app:layout_constraintStart_toStartOf="@+id/main_left_guideLine"
+                app:layout_constraintTop_toBottomOf="@id/vp_main_topMovie">
 
-                <ImageView
-                    android:id="@+id/iv_copyWrite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <View
+                    android:id="@+id/series_blue_line"
+                    android:layout_width="@dimen/_4sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignBaseline="@id/tv_main_series"
                     android:layout_alignParentEnd="true"
-                    android:contentDescription="@string/todo"
-                    android:src="@drawable/ic_baseline_copyright_24" />
+                    android:layout_centerVertical="true"
+                    android:background="@color/light_blue_700" />
+
 
                 <TextView
+                    android:id="@+id/tv_main_series"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_alignEnd="@id/iv_copyWrite"
-                    android:layout_gravity="end|center"
-                    android:layout_marginEnd="24dp"
-                    android:layout_toStartOf="@+id/iv_copyWrite"
-                    android:fontFamily="@font/iranian_sans"
-                    android:padding="@dimen/_4sdp"
-                    android:text="@string/copyWrite"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_toStartOf="@id/series_blue_line"
+                    android:fontFamily="@font/iranian_sans_bold"
+                    android:text="@string/topSeries"
                     android:textColor="@color/text_white"
-                    android:textSize="@dimen/_8sdp"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    tools:ignore="RelativeOverlap" />
 
-                    />
+                <TextView
+                    android:id="@+id/tv_watchAllSeries"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:text="@string/more"
+                    android:textColor="@color/light_blue_700"
+                    android:textSize="@dimen/_10ssp"
+                    android:textStyle="bold" />
+
             </RelativeLayout>
-        </androidx.cardview.widget.CardView>
-        <!--GuidLines-->
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/main_right_guidLine"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="@dimen/_10sdp" />
+            <!--Top Series RecyclerView-->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_main_Series"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/gray_900"
+                android:padding="@dimen/_15sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/rl_main_topSeries" />
+            <!--Statics Text-->
+            <RelativeLayout
+                android:id="@+id/rl_main_static"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toStartOf="@+id/main_right_guidLine"
+                app:layout_constraintStart_toStartOf="@+id/main_left_guideLine"
+                app:layout_constraintTop_toBottomOf="@id/rv_main_Series">
 
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/main_left_guideLine"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="@dimen/_10sdp" />
+                <View
+                    android:id="@+id/static_blue_line"
+                    android:layout_width="@dimen/_4sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_alignBaseline="@id/tv_main_static"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:background="@color/light_blue_700" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</androidx.core.widget.NestedScrollView>
+                <TextView
+                    android:id="@+id/tv_main_static"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_toStartOf="@id/static_blue_line"
+                    android:fontFamily="@font/iranian_sans_bold"
+                    android:text="@string/moviesStatics"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    tools:ignore="RelativeOverlap" />
+
+            </RelativeLayout>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_static"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintEnd_toEndOf="@id/main_right_guidLine"
+                app:layout_constraintStart_toStartOf="@id/main_left_guideLine"
+                app:layout_constraintTop_toBottomOf="@id/rl_main_static">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:padding="@dimen/_20sdp">
+
+                    <TextView
+                        android:id="@+id/static_movie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:fontFamily="@font/iranian_sans_bold"
+                        android:text="@string/Movie"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold"
+                        tools:ignore="RelativeOverlap" />
+
+                    <TextView
+                        android:id="@+id/static_movie_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:fontFamily="@font/iranian_sans"
+                        android:text="@string/static_movie_num"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/_12ssp" />
+
+
+                    <View
+                        android:id="@+id/divider_ms"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/static_movie"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:background="?android:attr/listDivider" />
+
+
+                    <TextView
+                        android:id="@+id/static_series"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/divider_ms"
+                        android:layout_alignParentEnd="true"
+                        android:fontFamily="@font/iranian_sans_bold"
+                        android:text="@string/series"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/static_series_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/divider_ms"
+                        android:layout_alignParentStart="true"
+                        android:fontFamily="@font/iranian_sans"
+                        android:text="@string/static_series_num"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/_12ssp" />
+
+                    <View
+                        android:id="@+id/divider_sa"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_below="@id/static_series"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:background="?android:attr/listDivider" />
+
+
+                    <TextView
+                        android:id="@+id/static_animation"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/divider_sa"
+                        android:layout_alignParentEnd="true"
+                        android:fontFamily="@font/iranian_sans_bold"
+                        android:text="@string/animation"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/_12ssp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/static_animation_num"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/divider_sa"
+                        android:layout_alignParentStart="true"
+                        android:fontFamily="@font/iranian_sans"
+                        android:text="@string/static_animation_num"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/_12ssp" />
+
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+            <!--Copy Write-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_copyWrite"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:cardUseCompatPadding="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/main_right_guidLine"
+                app:layout_constraintStart_toStartOf="@id/main_left_guideLine"
+                app:layout_constraintTop_toBottomOf="@id/card_static">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/iv_copyWrite"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:contentDescription="@string/todo"
+                        android:src="@drawable/ic_baseline_copyright_24" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignEnd="@id/iv_copyWrite"
+                        android:layout_gravity="end|center"
+                        android:layout_marginEnd="24dp"
+                        android:layout_toStartOf="@+id/iv_copyWrite"
+                        android:fontFamily="@font/iranian_sans"
+                        android:padding="@dimen/_4sdp"
+                        android:text="@string/copyWrite"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/_8sdp"
+
+                        />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <!--GuidLines-->
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/main_right_guidLine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="@dimen/_10sdp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/main_left_guideLine"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="@dimen/_10sdp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

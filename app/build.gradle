@@ -54,6 +54,7 @@ dependencies {
     //Lombok
     compileOnly 'org.projectlombok:lombok:1.18.26'
     annotationProcessor 'org.projectlombok:lombok:1.18.26'
-
+    //Lotti
+    implementation "com.airbnb.android:lottie:3.4.0"
 
 }

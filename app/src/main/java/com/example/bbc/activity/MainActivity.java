@@ -2,12 +2,14 @@ package com.example.bbc.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -15,6 +17,7 @@ import androidx.viewpager2.widget.CompositePageTransformer;
 import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.bbc.application.app;
 import com.example.bbc.databinding.ActivityMainBinding;
 import com.example.bbc.db.volley.GenreVolley;
@@ -44,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-
+        FetchingData();
         setSlider();
         setSliderTimer();
         setGenre();
@@ -53,6 +56,18 @@ public class MainActivity extends AppCompatActivity {
         setWatchAll();
 
 
+    }
+
+    private void FetchingData() {
+        ConstraintLayout container = binding.clMainContainer;
+        LottieAnimationView intro = binding.lottie;
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                container.setVisibility(View.VISIBLE);
+                intro.setVisibility(View.GONE);
+            }
+        }, 5000);
     }
 
     private void setSlider() {
@@ -140,14 +155,12 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-
     //Timer For Slider
     private void setSliderTimer() {
         TimerSlider timerSlider = new TimerSlider();
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(timerSlider, 5000, 3000);
     }
-
 
     //Timer for Slider
     public class TimerSlider extends TimerTask {
@@ -165,6 +178,7 @@ public class MainActivity extends AppCompatActivity {
             });
         }
     }
+
 }
 
 
