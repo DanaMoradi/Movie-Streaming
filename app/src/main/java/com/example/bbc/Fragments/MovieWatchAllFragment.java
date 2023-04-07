@@ -11,19 +11,19 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bbc.databinding.MovieWatchAllFragmentBinding;
+import com.example.bbc.databinding.WatchAllFragmentBinding;
 import com.example.bbc.db.volley.TopMovieVolley;
 
 public class MovieWatchAllFragment extends Fragment {
 
 
-    private MovieWatchAllFragmentBinding binding;
+    private WatchAllFragmentBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        binding = MovieWatchAllFragmentBinding.inflate(inflater, container, false);
+        binding = WatchAllFragmentBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
         return view;
     }
@@ -33,15 +33,12 @@ public class MovieWatchAllFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        RecyclerView recyclerView = binding.rvFragmentWatchAllMovie;
+        RecyclerView recyclerView = binding.rvFragmentWatchAll;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setHasFixedSize(true);
 
-
         TopMovieVolley topMovieVolley = new TopMovieVolley(recyclerView);
         topMovieVolley.setRequestQueue();
-
-
     }
 
 

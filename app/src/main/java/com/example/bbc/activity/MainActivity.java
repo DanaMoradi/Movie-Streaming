@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void setGenre() {
         RecyclerView genre = binding.rvMainGenre;
-        genre.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        genre.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
 
         GenreVolley genreVolley = new GenreVolley(binding.rvMainGenre);
         genreVolley.setRequestQueue();
@@ -95,26 +96,47 @@ public class MainActivity extends AppCompatActivity {
 
     private void setSeries() {
         RecyclerView seriesRV = binding.rvMainSeries;
-        seriesRV.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        seriesRV.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
         seriesRV.setClipToPadding(false);
         seriesRV.setHasFixedSize(true);
 
         SeriesVolley seriesVolley = new SeriesVolley(seriesRV);
-        seriesVolley.setRequestQueue();
+        seriesVolley.setRequestQueueLimited();
     }
 
     private void setWatchAll() {
 
+        ImageView seeGenre = binding.ivMainGenre;
         TextView seeMovie = binding.tvWatchAllMovies;
-        seeMovie.setOnClickListener(new View.OnClickListener() {
+        TextView seeSeries = binding.tvWatchAllSeries;
+
+        seeGenre.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Intent intent = new Intent(MainActivity.this, WatchAllActivity.class);
-                intent.putExtra(app.ALL_MOVIE, app.ALL_MOVIE);
+                intent.putExtra(app.ALL_KEY, app.ALL_GENRE);
                 startActivity(intent);
             }
         });
 
+        seeMovie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WatchAllActivity.class);
+                intent.putExtra(app.ALL_KEY, app.ALL_MOVIE);
+                startActivity(intent);
+            }
+        });
+
+        seeSeries.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WatchAllActivity.class);
+                intent.putExtra(app.ALL_KEY, app.ALL_SERIES);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -125,6 +147,7 @@ public class MainActivity extends AppCompatActivity {
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(timerSlider, 5000, 3000);
     }
+
 
     //Timer for Slider
     public class TimerSlider extends TimerTask {

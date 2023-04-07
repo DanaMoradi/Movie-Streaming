@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layoutDirection="rtl"
     app:cardBackgroundColor="@color/warm_gray_900"
     app:cardElevation="@dimen/_8sdp"
     app:cardPreventCornerOverlap="true">
@@ -29,6 +30,7 @@
             android:layout_width="@dimen/_32sdp"
             android:layout_height="@dimen/_32sdp"
             android:elevation="@dimen/_10sdp"
+            android:layoutDirection="ltr"
             android:src="@drawable/ic_baseline_bookmark_add_24"
             app:layout_constraintEnd_toEndOf="@id/iv_main_topMain"
             app:layout_constraintTop_toTopOf="@id/iv_main_topMain" />
@@ -47,6 +49,7 @@
             android:layout_marginStart="@dimen/_12sdp"
             android:layout_marginBottom="@dimen/_12sdp"
             android:ellipsize="end"
+            android:gravity="end"
             android:maxLines="1"
             android:paddingEnd="@dimen/_2sdp"
             android:textColor="@color/white"

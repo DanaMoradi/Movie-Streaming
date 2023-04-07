@@ -8,20 +8,23 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bbc.databinding.WatchAllFragmentBinding;
-import com.example.bbc.db.volley.SeriesVolley;
+import com.example.bbc.db.volley.GenreVolley;
 
-public class SeriesWatchAllFragment extends Fragment {
+public class GenreWatchAllFragment extends Fragment {
+
 
     private WatchAllFragmentBinding binding;
 
+    @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = WatchAllFragmentBinding.inflate(LayoutInflater.from(getContext()), container, false);
-        return binding.getRoot();
+        binding = WatchAllFragmentBinding.inflate(LayoutInflater.from(container.getContext()), container, false);
+        View view = binding.getRoot();
+        return view;
     }
 
     @Override
@@ -29,11 +32,16 @@ public class SeriesWatchAllFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         RecyclerView recyclerView = binding.rvFragmentWatchAll;
-        recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
-        SeriesVolley seriesVolley = new SeriesVolley(recyclerView);
-        seriesVolley.setRequestQueue();
+        GenreVolley genreVolley = new GenreVolley(recyclerView, true);
+        genreVolley.setRequestQueue();
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        binding = null;
     }
 }

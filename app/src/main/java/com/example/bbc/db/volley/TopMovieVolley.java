@@ -33,7 +33,6 @@ public class TopMovieVolley {
     ViewPager2 viewPager2;
     RecyclerView recyclerView;
 
-
     public TopMovieVolley(ViewPager2 viewPager2) {
         this.viewPager2 = viewPager2;
     }
@@ -41,7 +40,6 @@ public class TopMovieVolley {
     public TopMovieVolley(RecyclerView recyclerView) {
         this.recyclerView = recyclerView;
     }
-
 
     public void setRequestQueueLimited() {
 

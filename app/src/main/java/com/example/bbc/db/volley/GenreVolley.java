@@ -8,6 +8,7 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.example.bbc.adapter.AllGenreAdapter;
 import com.example.bbc.adapter.GenreMainAdapter;
 import com.example.bbc.application.app;
 import com.example.bbc.model.GenreModel;
@@ -24,13 +25,22 @@ public class GenreVolley {
 
     String link = app.LINK + "getGenre.php";
 
+
+    Boolean all = false;
     List<GenreModel> list = new ArrayList<>();
     GenreMainAdapter adapter;
+    AllGenreAdapter allGenreAdapter;
     RecyclerView recyclerView;
 
     public GenreVolley(RecyclerView recyclerView) {
         this.recyclerView = recyclerView;
     }
+
+    public GenreVolley(RecyclerView recyclerView, Boolean all) {
+        this.recyclerView = recyclerView;
+        this.all = all;
+    }
+
 
     public void setRequestQueue() {
 
@@ -54,8 +64,13 @@ public class GenreVolley {
                         genreModel.setImg(img);
 
                         list.add(genreModel);
-                        adapter = new GenreMainAdapter(list);
-                        recyclerView.setAdapter(adapter);
+                        if (all) {
+                            allGenreAdapter = new AllGenreAdapter(list);
+                            recyclerView.setAdapter(allGenreAdapter);
+                        } else {
+                            adapter = new GenreMainAdapter(list);
+                            recyclerView.setAdapter(adapter);
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();

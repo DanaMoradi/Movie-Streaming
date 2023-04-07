@@ -57,19 +57,22 @@
             tools:ignore="SpeakableTextPresentCheck" />
         <!--Genre-->
         <androidx.cardview.widget.CardView
-            android:id="@+id/rl_genre_watchAll"
+            android:id="@+id/cv_genre_watchAll"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginStart="@dimen/_8sdp"
             android:background="@drawable/gradiant_main_bg"
+            android:clickable="true"
+            android:focusable="true"
             app:cardCornerRadius="@dimen/_10sdp"
             app:cardElevation="@dimen/_10sdp"
             app:cardPreventCornerOverlap="true"
             app:cardUseCompatPadding="false"
-            app:layout_constraintStart_toStartOf="@id/main_left_guideLine"
+            app:layout_constraintEnd_toEndOf="@id/main_right_guidLine"
             app:layout_constraintTop_toBottomOf="@id/tabLayout">
 
             <RelativeLayout
+                android:id="@+id/rl_genre_watchAll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/genre_radius">
@@ -118,8 +121,8 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:elevation="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/rl_genre_watchAll"
+            app:layout_constraintEnd_toStartOf="@+id/cv_genre_watchAll"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tabLayout" />
         <!--Top Movie Text-->
         <RelativeLayout
@@ -176,6 +179,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/gray_900"
+            android:layoutDirection="rtl"
             android:paddingHorizontal="@dimen/_90sdp"
             android:paddingBottom="@dimen/_4sdp"
             app:layout_constraintEnd_toEndOf="parent"

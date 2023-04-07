@@ -1,6 +1,5 @@
 package com.example.bbc.model;
 
-import java.sql.Time;
 import java.util.Date;
 
 import lombok.Getter;
@@ -23,13 +22,13 @@ public class SeriesModel {
     private String director;
     @Getter
     @Setter
-    private int rate_imdb;
+    private String rate_imdb;
     @Getter
     @Setter
     private Date published;
     @Getter
     @Setter
-    private Time time;
+    private String seasonsAndEpisodes;
     @Getter
     @Setter
     private String category_name;
