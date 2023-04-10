@@ -75,7 +75,6 @@ public class MainActivity extends AppCompatActivity {
         SliderVolley sliderVolley = new SliderVolley(slider, list);
         sliderVolley.setRequestQueue();
         binding.tabLayout.setupWithViewPager(slider, true);
-
     }
 
     private void setGenre() {

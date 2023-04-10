@@ -56,11 +56,18 @@ public class TopMovieVolley {
                         String name = jsonObject.getString(app.NAME);
                         String img = jsonObject.getString(app.IMG);
                         String description = jsonObject.getString(app.DESCRIPTION);
+                        String time = jsonObject.getString(app.TIME);
+                        String rate_imdb = jsonObject.getString(app.RATE_IMDB);
+                        String director = jsonObject.getString(app.DIRECTOR);
+
 
                         topMovieModel.setId(id);
                         topMovieModel.setName(name);
                         topMovieModel.setImg(img);
                         topMovieModel.setDescription(description);
+                        topMovieModel.setTime(time);
+                        topMovieModel.setRate_imdb(rate_imdb);
+                        topMovieModel.setDirector(director);
 
 
                         list.add(topMovieModel);

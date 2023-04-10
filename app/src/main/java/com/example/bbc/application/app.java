@@ -21,6 +21,9 @@ public class app extends Application {
     public static final String ALL_MOVIE = "watchAllMovie";
     public static final String ALL_GENRE = "watchAllGenre";
     public static final String ALL_SERIES = "watchAllSeries";
+    public static final String SINGLE_KEY = "singleKey";
+    public static final String SINGLE_MOVIE = "single top movie";
+    public static final String SINGLE_SERIES = "singleKey";
 
 
     public static final String ID = "id";

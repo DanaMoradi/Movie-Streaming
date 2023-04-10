@@ -1,14 +1,17 @@
 package com.example.bbc.adapter;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.bbc.activity.DetailPageActivity;
+import com.example.bbc.application.app;
+import com.example.bbc.databinding.ActivityDetailPageBinding;
 import com.example.bbc.databinding.ItemTopMovieBinding;
 import com.example.bbc.model.TopMovieModel;
 import com.squareup.picasso.Picasso;
@@ -59,8 +62,6 @@ public class TopMovieMainAdapter extends RecyclerView.Adapter<TopMovieMainAdapte
             ImageView img = view.ivMainTopMain;
             view.tvMainTopMovieName.setText(item.getName());
             view.tvTopMovieDescription.setText(item.getDescription());
-
-            String movieName = view.tvMainTopMovieName.getText().toString();
             Picasso.get().load(item.getImg()).into(img);
 
             img.setOnClickListener(new View.OnClickListener() {
@@ -76,13 +77,19 @@ public class TopMovieMainAdapter extends RecyclerView.Adapter<TopMovieMainAdapte
             view.btnTopMovie.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(v.getContext(), movieName, Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(view.getRoot().getContext(), DetailPageActivity.class);
+                    intent.putExtra(app.SINGLE_KEY, app.SINGLE_MOVIE);
+                    intent.putExtra(app.ID, item.getId());
+                    intent.putExtra(app.NAME, item.getName());
+                    intent.putExtra(app.IMG, item.getImg());
+                    intent.putExtra(app.DESCRIPTION, item.getDescription());
+                    intent.putExtra(app.DIRECTOR, item.getDirector());
+                    intent.putExtra(app.TIME, item.getTime());
+                    intent.putExtra(app.RATE_IMDB, item.getRate_imdb());
+                    view.getRoot().getContext().startActivity(intent);
                 }
             });
-
-
         }
     }
-
 
 }
