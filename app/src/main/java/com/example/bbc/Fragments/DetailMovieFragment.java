@@ -11,11 +11,13 @@ import androidx.fragment.app.Fragment;
 
 import com.example.bbc.application.app;
 import com.example.bbc.databinding.ItemDetailMovieFragmentBinding;
+import com.example.bbc.model.TopMovieModel;
 import com.squareup.picasso.Picasso;
 
-public class SingleFragment extends Fragment {
+public class DetailMovieFragment extends Fragment {
 
     private ItemDetailMovieFragmentBinding binding;
+    private TopMovieModel movieModel;
 
     @Nullable
     @Override
@@ -29,12 +31,19 @@ public class SingleFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        Bundle bundle = this.getArguments();
-        binding.tvSingleName.setText(bundle.getString(app.NAME));
-        Picasso.get().load(bundle.getString(app.IMG)).into(binding.ivSingle);
-        binding.tvSingleDirector.setText(bundle.getString(app.DIRECTOR));
-        binding.tvSingleDescription.setText(bundle.getString(app.DESCRIPTION));
-        binding.tvSingleRate.setText(bundle.getString(app.RATE_IMDB));
-        binding.tvSingleTime.setText(bundle.getString(app.TIME));
+        movieModel = getArguments().getParcelable(app.SINGLE_MOVIE);
+
+        if (movieModel != null) {
+            binding.tvSingleName.setText(movieModel.getName());
+            Picasso.get().load(movieModel.getImg()).into(binding.ivSingle);
+            binding.tvSingleDirector.setText(movieModel.getDirector());
+            binding.tvSingleDescription.setText(movieModel.getDescription());
+            binding.tvSingleRate.setText(movieModel.getRate_imdb());
+            binding.tvSingleTime.setText(movieModel.getTime());
+            binding.tvSingleGenre.setText(movieModel.getGenre_name());
+            binding.tvSinglePublished.setText(movieModel.getPublished());
+        }
+
+
     }
 }

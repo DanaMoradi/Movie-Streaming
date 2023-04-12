@@ -1,38 +1,82 @@
 package com.example.bbc.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
 import lombok.Getter;
 import lombok.Setter;
 
-public class TopMovieModel {
 
-    @Getter
-    @Setter
+@Getter
+@Setter
+public class TopMovieModel implements Parcelable {
     private Long id;
-    @Getter
-    @Setter
     private String name;
-    @Getter
-    @Setter
     private String img;
-    @Getter
-    @Setter
     private String director;
-    @Getter
-    @Setter
     private String rate_imdb;
-    @Getter
-    @Setter
-    private Date published;
-    @Getter
-    @Setter
+    private String published;
     private String time;
-    @Getter
-    @Setter
-    private String category_name;
-    @Getter
-    @Setter
+    private String genre_name;
     private String description;
 
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeValue(this.id);
+        dest.writeString(this.name);
+        dest.writeString(this.img);
+        dest.writeString(this.director);
+        dest.writeString(this.rate_imdb);
+        dest.writeString(this.published);
+        dest.writeString(this.time);
+        dest.writeString(this.genre_name);
+        dest.writeString(this.description);
+    }
+
+    public void readFromParcel(Parcel source) {
+        this.id = (Long) source.readValue(Long.class.getClassLoader());
+        this.name = source.readString();
+        this.img = source.readString();
+        this.director = source.readString();
+        this.rate_imdb = source.readString();
+        this.published = source.readString();
+        this.time = source.readString();
+        this.genre_name = source.readString();
+        this.description = source.readString();
+    }
+
+    public TopMovieModel() {
+    }
+
+    protected TopMovieModel(Parcel in) {
+        this.id = (Long) in.readValue(Long.class.getClassLoader());
+        this.name = in.readString();
+        this.img = in.readString();
+        this.director = in.readString();
+        this.rate_imdb = in.readString();
+        this.published = in.readString();
+        this.time = in.readString();
+        this.genre_name = in.readString();
+        this.description = in.readString();
+    }
+
+    public static final Parcelable.Creator<TopMovieModel> CREATOR = new Parcelable.Creator<TopMovieModel>() {
+        @Override
+        public TopMovieModel createFromParcel(Parcel source) {
+            return new TopMovieModel(source);
+        }
+
+        @Override
+        public TopMovieModel[] newArray(int size) {
+            return new TopMovieModel[size];
+        }
+    };
 }

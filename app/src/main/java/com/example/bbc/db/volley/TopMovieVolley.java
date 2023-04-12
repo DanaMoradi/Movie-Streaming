@@ -58,7 +58,9 @@ public class TopMovieVolley {
                         String description = jsonObject.getString(app.DESCRIPTION);
                         String time = jsonObject.getString(app.TIME);
                         String rate_imdb = jsonObject.getString(app.RATE_IMDB);
+                        String genre_name = jsonObject.getString(app.GENRE);
                         String director = jsonObject.getString(app.DIRECTOR);
+                        String published = jsonObject.getString(app.PUBLISHED);
 
 
                         topMovieModel.setId(id);
@@ -68,6 +70,8 @@ public class TopMovieVolley {
                         topMovieModel.setTime(time);
                         topMovieModel.setRate_imdb(rate_imdb);
                         topMovieModel.setDirector(director);
+                        topMovieModel.setGenre_name(genre_name);
+                        topMovieModel.setPublished(published);
 
 
                         list.add(topMovieModel);

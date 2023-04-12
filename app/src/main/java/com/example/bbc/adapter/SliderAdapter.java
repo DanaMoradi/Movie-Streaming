@@ -44,12 +44,7 @@ public class SliderAdapter extends PagerAdapter {
         binding.ivSlider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(view.getContext(), DetailPageActivity.class);
-                intent.putExtra(app.SINGLE_KEY, app.SINGLE_MOVIE);
-                intent.putExtra(app.ID, list.get(position).getId());
-                intent.putExtra(app.NAME, list.get(position).getName());
-                intent.putExtra(app.IMG, list.get(position).getImg());
-                view.getContext().startActivity(intent);
+
             }
         });
 

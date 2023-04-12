@@ -1,18 +1,23 @@
 package com.example.bbc.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.bbc.Fragments.SingleFragment;
+import com.example.bbc.Fragments.DetailMovieFragment;
 import com.example.bbc.R;
 import com.example.bbc.application.app;
 import com.example.bbc.databinding.ActivityDetailPageBinding;
+import com.example.bbc.model.SeriesModel;
+import com.example.bbc.model.TopMovieModel;
 
 public class DetailPageActivity extends AppCompatActivity {
 
 
+    private TopMovieModel movieModel;
+    private SeriesModel seriesModel;
     private ActivityDetailPageBinding binding;
 
     @Override
@@ -22,38 +27,25 @@ public class DetailPageActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
 
-        Bundle getBundle = getIntent().getExtras();
+        movieModel = getIntent().getParcelableExtra(app.SINGLE_MOVIE);
+        seriesModel = getIntent().getParcelableExtra(app.SINGLE_SERIES);
 
 
-        switch (getBundle.getString(app.SINGLE_KEY)) {
-            case app.SINGLE_MOVIE:
-                SingleFragment singleFragment = new SingleFragment();
+        Bundle bundle = new Bundle();
 
-                int id = getBundle.getInt(app.ID);
-                String name = getBundle.getString(app.NAME);
-                String img = getBundle.getString(app.IMG);
-                String rate_imdb = getBundle.getString(app.RATE_IMDB);
-                String description = getBundle.getString(app.DESCRIPTION);
-                String director = getBundle.getString(app.DIRECTOR);
-                String time = getBundle.getString(app.TIME);
-
-                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-
-                getBundle.putInt(app.ID, id);
-                getBundle.putString(app.NAME, name);
-                getBundle.putString(app.IMG, img);
-                getBundle.putString(app.RATE_IMDB, rate_imdb);
-                getBundle.putString(app.DESCRIPTION, description);
-                getBundle.putString(app.DIRECTOR, director);
-                getBundle.putString(app.TIME, time);
-
-                singleFragment.setArguments(getBundle);
-
-                fragmentTransaction.replace(R.id.frame_single_fragment, singleFragment);
-                fragmentTransaction.commit();
-                break;
-
-
+        if (movieModel != null) {
+            DetailMovieFragment singleFragment = new DetailMovieFragment();
+            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+            bundle.putParcelable(app.SINGLE_MOVIE, movieModel);
+            singleFragment.setArguments(bundle);
+            fragmentTransaction.replace(R.id.frame_single_fragment, singleFragment);
+            fragmentTransaction.commit();
         }
+
+        if (seriesModel != null) {
+            Log.e("SERIES", seriesModel + "");
+        }
+
+
     }
 }

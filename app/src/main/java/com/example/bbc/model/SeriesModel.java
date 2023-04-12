@@ -5,31 +5,17 @@ import java.util.Date;
 import lombok.Getter;
 import lombok.Setter;
 
+
+@Getter
+@Setter
 public class SeriesModel {
 
-
-    @Getter
-    @Setter
     private Long id;
-    @Getter
-    @Setter
     private String name;
-    @Getter
-    @Setter
     private String img;
-    @Getter
-    @Setter
     private String director;
-    @Getter
-    @Setter
     private String rate_imdb;
-    @Getter
-    @Setter
-    private Date published;
-    @Getter
-    @Setter
     private String seasonsAndEpisodes;
-    @Getter
-    @Setter
+    private Date published;
     private String category_name;
 }

@@ -21,7 +21,6 @@ public class app extends Application {
     public static final String ALL_MOVIE = "watchAllMovie";
     public static final String ALL_GENRE = "watchAllGenre";
     public static final String ALL_SERIES = "watchAllSeries";
-    public static final String SINGLE_KEY = "singleKey";
     public static final String SINGLE_MOVIE = "single top movie";
     public static final String SINGLE_SERIES = "singleKey";
 
@@ -33,6 +32,7 @@ public class app extends Application {
     public static final String RATE_IMDB = "rate_imdb";
     public static final String PUBLISHED = "published";
     public static final String TIME = "time";
+    public static final String GENRE = "genre_name";
     public static final String CATEGORY = "category_name";
     public static final String DESCRIPTION = "description";
     public static final String CATEGORY_TOP_MOVIE = "top_movie_new";
