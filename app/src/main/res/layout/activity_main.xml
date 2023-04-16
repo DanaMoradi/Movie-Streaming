@@ -71,7 +71,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/vp_main_slider"
-                app:tabBackground="@drawable/bg_tabs"
+                app:tabBackground="@drawable/bg_slider_tabs"
                 app:tabGravity="center"
                 app:tabIndicatorHeight="0dp"
                 tools:ignore="SpeakableTextPresentCheck" />

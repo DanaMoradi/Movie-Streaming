@@ -8,10 +8,14 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.viewpager2.widget.ViewPager2;
 
+import com.example.bbc.adapter.DetailMovieVpAdapter;
 import com.example.bbc.application.app;
 import com.example.bbc.databinding.ItemDetailMovieFragmentBinding;
 import com.example.bbc.model.TopMovieModel;
+import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
 
 public class DetailMovieFragment extends Fragment {
@@ -30,7 +34,6 @@ public class DetailMovieFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
         movieModel = getArguments().getParcelable(app.SINGLE_MOVIE);
 
         if (movieModel != null) {
@@ -42,8 +45,50 @@ public class DetailMovieFragment extends Fragment {
             binding.tvSingleTime.setText(movieModel.getTime());
             binding.tvSingleGenre.setText(movieModel.getGenre_name());
             binding.tvSinglePublished.setText(movieModel.getPublished());
-        }
 
+        }
+        setTabLayout();
+    }
+
+
+    private void setTabLayout() {
+
+        TabLayout tabs = binding.tabsDetailMovie;
+        ViewPager2 detailMovieVp = binding.vpDetailMovie;
+
+        
+        FragmentManager fragmentManager = getFragmentManager();
+
+        DetailMovieVpAdapter adapter = new DetailMovieVpAdapter(fragmentManager, getLifecycle(), movieModel.getId());
+        detailMovieVp.setAdapter(adapter);
+        detailMovieVp.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
+
+
+        tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                detailMovieVp.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        detailMovieVp.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                tabs.selectTab(tabs.getTabAt(position));
+            }
+        });
 
     }
+
 }

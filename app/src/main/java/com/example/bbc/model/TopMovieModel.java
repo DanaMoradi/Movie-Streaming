@@ -3,8 +3,6 @@ package com.example.bbc.model;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -12,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TopMovieModel implements Parcelable {
-    private Long id;
+    private int id;
     private String name;
     private String img;
     private String director;
@@ -30,7 +28,7 @@ public class TopMovieModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeValue(this.id);
+        dest.writeInt(this.id);
         dest.writeString(this.name);
         dest.writeString(this.img);
         dest.writeString(this.director);
@@ -42,7 +40,7 @@ public class TopMovieModel implements Parcelable {
     }
 
     public void readFromParcel(Parcel source) {
-        this.id = (Long) source.readValue(Long.class.getClassLoader());
+        this.id = source.readInt();
         this.name = source.readString();
         this.img = source.readString();
         this.director = source.readString();
@@ -57,7 +55,7 @@ public class TopMovieModel implements Parcelable {
     }
 
     protected TopMovieModel(Parcel in) {
-        this.id = (Long) in.readValue(Long.class.getClassLoader());
+        this.id = in.readInt();
         this.name = in.readString();
         this.img = in.readString();
         this.director = in.readString();
@@ -68,7 +66,7 @@ public class TopMovieModel implements Parcelable {
         this.description = in.readString();
     }
 
-    public static final Parcelable.Creator<TopMovieModel> CREATOR = new Parcelable.Creator<TopMovieModel>() {
+    public static final Creator<TopMovieModel> CREATOR = new Creator<TopMovieModel>() {
         @Override
         public TopMovieModel createFromParcel(Parcel source) {
             return new TopMovieModel(source);

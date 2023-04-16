@@ -46,6 +46,7 @@ public class AllTopMovieAdapter extends RecyclerView.Adapter<AllTopMovieAdapter.
             view = v;
         }
 
+
         public void onBindView(TopMovieModel item) {
             Picasso.get().load(item.getImg()).into(view.ivWatchAllMovie);
             view.tvWatchAllMoviesName.setText(item.getName());

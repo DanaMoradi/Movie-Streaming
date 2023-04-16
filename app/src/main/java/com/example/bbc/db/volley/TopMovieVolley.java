@@ -52,7 +52,7 @@ public class TopMovieVolley {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         TopMovieModel topMovieModel = new TopMovieModel();
 
-                        Long id = jsonObject.getLong(app.ID);
+                        int id = jsonObject.getInt(app.ID);
                         String name = jsonObject.getString(app.NAME);
                         String img = jsonObject.getString(app.IMG);
                         String description = jsonObject.getString(app.DESCRIPTION);
@@ -104,7 +104,7 @@ public class TopMovieVolley {
                         JSONObject jsonObject = jsonArray.getJSONObject(i);
                         TopMovieModel topMovieModel = new TopMovieModel();
 
-                        Long id = jsonObject.getLong(app.ID);
+                        int id = jsonObject.getInt(app.ID);
                         String name = jsonObject.getString(app.NAME);
                         String img = jsonObject.getString(app.IMG);
                         String director = jsonObject.getString(app.DIRECTOR);
