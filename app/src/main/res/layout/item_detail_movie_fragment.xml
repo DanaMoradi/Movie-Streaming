@@ -278,7 +278,7 @@
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/cv_detailMovie_tabs"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 app:cardBackgroundColor="@color/warm_gray_900"
                 app:cardCornerRadius="@dimen/_4sdp"
                 app:cardElevation="@dimen/_4sdp"
@@ -291,7 +291,7 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <com.google.android.material.tabs.TabLayout
@@ -300,13 +300,14 @@
                         android:layout_height="wrap_content"
                         android:background="@color/gray_900"
                         android:layoutDirection="rtl"
+                        android:scrollbars="none"
                         app:tabIndicatorAnimationMode="elastic"
                         app:tabIndicatorColor="@color/yellow_500"
                         app:tabIndicatorGravity="bottom"
                         app:tabMode="scrollable"
-                        android:scrollbars="none"
                         app:tabRippleColor="@color/yellow_500"
-                        app:tabSelectedTextColor="@color/yellow_500">
+                        app:tabSelectedTextColor="@color/yellow_500"
+                        app:tabTextColor="@color/text_white">
 
 
                         <com.google.android.material.tabs.TabItem
@@ -319,11 +320,6 @@
                             android:layout_height="wrap_content"
                             android:text="مرتبط" />
 
-                        <com.google.android.material.tabs.TabItem
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="نظرات" />
-
 
                     </com.google.android.material.tabs.TabLayout>
 
@@ -331,7 +327,7 @@
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/vp_detailMovie"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_400sdp"
                         android:background="@color/gray_900" />
 
                 </LinearLayout>

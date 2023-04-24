@@ -13,7 +13,7 @@ public class app extends Application {
     public static final String TAG = app.class.getSimpleName();
 
 
-    public static final String LINK = "http://bbc.mywebcommunity.org/";
+    public static final String BASE_URL = "http://bbc.mywebcommunity.org/";
     //    public static final String LINK = "http://192.168.132.122/BBC/";
 
 

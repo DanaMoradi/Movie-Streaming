@@ -11,8 +11,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.VolleyError;
+import com.example.bbc.adapter.AllTopMovieAdapter;
+import com.example.bbc.application.app;
 import com.example.bbc.databinding.WatchAllFragmentBinding;
-import com.example.bbc.db.volley.TopMovieVolley;
+import com.example.bbc.db.volley.ApiService;
+import com.example.bbc.interfaces.TopMovieInterfaceCallBack;
+import com.example.bbc.model.TopMovieModel;
+
+import java.util.List;
 
 public class MovieWatchAllFragment extends Fragment {
 
@@ -37,8 +44,21 @@ public class MovieWatchAllFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setHasFixedSize(true);
 
-        TopMovieVolley topMovieVolley = new TopMovieVolley(recyclerView);
-        topMovieVolley.setRequestQueue();
+        ApiService apiService = new ApiService(getContext(), app.TAG);
+        apiService.getAllTopMovie(new TopMovieInterfaceCallBack() {
+            @Override
+            public void onSuccess(List<TopMovieModel> list) {
+                AllTopMovieAdapter adapter = new AllTopMovieAdapter(list);
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onError(VolleyError error) {
+
+            }
+        });
+
+
     }
 
 

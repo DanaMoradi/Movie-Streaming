@@ -1,6 +1,7 @@
 package com.example.bbc.Fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +12,23 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bbc.databinding.FragmentDetailMovieCastBinding;
-import com.example.bbc.db.volley.CastVolley;
+import com.android.volley.VolleyError;
+import com.example.bbc.adapter.CastAdapter;
+import com.example.bbc.application.app;
+import com.example.bbc.databinding.FragmentDetailMovieBinding;
+import com.example.bbc.db.volley.ApiService;
+import com.example.bbc.interfaces.CastInterfaceCallBack;
+import com.example.bbc.model.CastModel;
 
-public class DetailMovieCastFragment extends Fragment {
+import java.util.List;
 
-    FragmentDetailMovieCastBinding binding;
+public class DetailMovieCastFragment extends Fragment implements CastInterfaceCallBack {
 
-    int id;
+    FragmentDetailMovieBinding binding;
+
+    private int id;
+    private RecyclerView castRecyclerView;
+
 
     public DetailMovieCastFragment(int id) {
         this.id = id;
@@ -27,7 +37,7 @@ public class DetailMovieCastFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentDetailMovieCastBinding.inflate(inflater, container, false);
+        binding = FragmentDetailMovieBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 
@@ -36,11 +46,24 @@ public class DetailMovieCastFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 
-        RecyclerView castRecyclerView = binding.rvDetailMovieCast;
+        castRecyclerView = binding.rvDetailMovie;
         castRecyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
+        castRecyclerView.setHasFixedSize(true);
 
-        CastVolley castVolley = new CastVolley(castRecyclerView, id);
-        castVolley.setRequestQueue();
+        ApiService apiService = new ApiService(getContext(), app.TAG);
+        apiService.getCastMovie(id, this);
 
+
+    }
+
+    @Override
+    public void onSuccess(List<CastModel> list) {
+        CastAdapter adapter = new CastAdapter(list);
+        castRecyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onError(VolleyError error) {
+        Log.e(app.TAG, error.getMessage());
     }
 }

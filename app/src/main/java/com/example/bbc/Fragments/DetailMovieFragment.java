@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.bbc.adapter.DetailMovieVpAdapter;
@@ -47,7 +46,10 @@ public class DetailMovieFragment extends Fragment {
             binding.tvSinglePublished.setText(movieModel.getPublished());
 
         }
+
         setTabLayout();
+
+
     }
 
 
@@ -56,13 +58,10 @@ public class DetailMovieFragment extends Fragment {
         TabLayout tabs = binding.tabsDetailMovie;
         ViewPager2 detailMovieVp = binding.vpDetailMovie;
 
-        
-        FragmentManager fragmentManager = getFragmentManager();
 
-        DetailMovieVpAdapter adapter = new DetailMovieVpAdapter(fragmentManager, getLifecycle(), movieModel.getId());
+        DetailMovieVpAdapter adapter = new DetailMovieVpAdapter(getFragmentManager(), getLifecycle(), movieModel.getId(), movieModel.getGenre_name());
         detailMovieVp.setAdapter(adapter);
         detailMovieVp.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);
-
 
         tabs.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override

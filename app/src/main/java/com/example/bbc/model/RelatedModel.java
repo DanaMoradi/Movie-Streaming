@@ -9,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CastModel implements Parcelable {
+public class RelatedModel implements Parcelable {
 
     private int id;
     private String img;
@@ -34,24 +34,24 @@ public class CastModel implements Parcelable {
         this.name = source.readString();
     }
 
-    public CastModel() {
+    public RelatedModel() {
     }
 
-    protected CastModel(Parcel in) {
+    protected RelatedModel(Parcel in) {
         this.id = in.readInt();
         this.img = in.readString();
         this.name = in.readString();
     }
 
-    public static final Parcelable.Creator<CastModel> CREATOR = new Parcelable.Creator<CastModel>() {
+    public static final Parcelable.Creator<RelatedModel> CREATOR = new Parcelable.Creator<RelatedModel>() {
         @Override
-        public CastModel createFromParcel(Parcel source) {
-            return new CastModel(source);
+        public RelatedModel createFromParcel(Parcel source) {
+            return new RelatedModel(source);
         }
 
         @Override
-        public CastModel[] newArray(int size) {
-            return new CastModel[size];
+        public RelatedModel[] newArray(int size) {
+            return new RelatedModel[size];
         }
     };
 }

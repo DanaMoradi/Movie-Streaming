@@ -1,6 +1,7 @@
 package com.example.bbc.Fragments;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,8 +12,15 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.android.volley.VolleyError;
+import com.example.bbc.adapter.AllGenreAdapter;
+import com.example.bbc.application.app;
 import com.example.bbc.databinding.WatchAllFragmentBinding;
-import com.example.bbc.db.volley.GenreVolley;
+import com.example.bbc.db.volley.ApiService;
+import com.example.bbc.interfaces.GenreInterfaceCallBack;
+import com.example.bbc.model.GenreModel;
+
+import java.util.List;
 
 public class GenreWatchAllFragment extends Fragment {
 
@@ -34,8 +42,19 @@ public class GenreWatchAllFragment extends Fragment {
         RecyclerView recyclerView = binding.rvFragmentWatchAll;
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
 
-        GenreVolley genreVolley = new GenreVolley(recyclerView, true);
-        genreVolley.setRequestQueue();
+        ApiService apiService = new ApiService(getContext(), app.TAG);
+        apiService.getAllGenre(new GenreInterfaceCallBack() {
+            @Override
+            public void onSuccess(List<GenreModel> list) {
+                AllGenreAdapter adapter = new AllGenreAdapter(list);
+                recyclerView.setAdapter(adapter);
+            }
+
+            @Override
+            public void onError(VolleyError error) {
+                Log.e(app.TAG, error.getMessage());
+            }
+        });
 
     }
 

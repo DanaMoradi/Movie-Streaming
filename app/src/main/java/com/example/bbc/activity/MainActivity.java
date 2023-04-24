@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -18,13 +19,22 @@ import androidx.viewpager2.widget.MarginPageTransformer;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.android.volley.VolleyError;
+import com.example.bbc.adapter.GenreMainAdapter;
+import com.example.bbc.adapter.SeriesMainAdapter;
+import com.example.bbc.adapter.SliderAdapter;
+import com.example.bbc.adapter.TopMovieMainAdapter;
 import com.example.bbc.application.app;
 import com.example.bbc.databinding.ActivityMainBinding;
-import com.example.bbc.db.volley.GenreVolley;
-import com.example.bbc.db.volley.SeriesVolley;
-import com.example.bbc.db.volley.SliderVolley;
-import com.example.bbc.db.volley.TopMovieVolley;
+import com.example.bbc.db.volley.ApiService;
+import com.example.bbc.interfaces.GenreInterfaceCallBack;
+import com.example.bbc.interfaces.SeriesInterfaceCallBack;
+import com.example.bbc.interfaces.SliderInterfaceCallBack;
+import com.example.bbc.interfaces.TopMovieInterfaceCallBack;
+import com.example.bbc.model.GenreModel;
+import com.example.bbc.model.SeriesModel;
 import com.example.bbc.model.SliderModel;
+import com.example.bbc.model.TopMovieModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
 
     //Slider
-    ViewPager slider;
+    ViewPager sliderVp;
     List<SliderModel> list = new ArrayList<>();
 
 
@@ -71,51 +81,94 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setSlider() {
-        slider = binding.vpMainSlider;
-        SliderVolley sliderVolley = new SliderVolley(slider, list);
-        sliderVolley.setRequestQueue();
-        binding.tabLayout.setupWithViewPager(slider, true);
+        sliderVp = binding.vpMainSlider;
+        ApiService apiService = new ApiService(this, app.TAG);
+        apiService.getSlider(new SliderInterfaceCallBack() {
+            @Override
+            public void onSuccess(List<SliderModel> list) {
+                SliderAdapter sliderAdapter = new SliderAdapter(list);
+                sliderVp.setAdapter(sliderAdapter);
+                binding.tabLayout.setupWithViewPager(sliderVp, true);
+                MainActivity.this.list = list;
+            }
+
+            @Override
+            public void onError(VolleyError error) {
+                Log.e(app.TAG, error.getMessage());
+            }
+        });
     }
 
     private void setGenre() {
-        RecyclerView genre = binding.rvMainGenre;
-        genre.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
 
-        GenreVolley genreVolley = new GenreVolley(binding.rvMainGenre);
-        genreVolley.setRequestQueue();
+        ApiService apiService = new ApiService(this, app.TAG);
+        apiService.getGenre(new GenreInterfaceCallBack() {
+            @Override
+            public void onSuccess(List<GenreModel> list) {
+                RecyclerView genreRv = binding.rvMainGenre;
+                genreRv.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, true));
+                GenreMainAdapter genreMainAdapter = new GenreMainAdapter(list);
+                genreRv.setAdapter(genreMainAdapter);
+
+            }
+
+            @Override
+            public void onError(VolleyError error) {
+                Log.e(app.TAG, error.getMessage());
+            }
+        });
+
+
     }
 
     private void setTopMovie() {
-        ViewPager2 viewPager2 = binding.vpMainTopMovie;
-        viewPager2.setOffscreenPageLimit(3);
-        viewPager2.setClipToPadding(false);
-        viewPager2.setClipChildren(false);
-        viewPager2.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+        ViewPager2 topMovieVp = binding.vpMainTopMovie;
 
-        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
-        compositePageTransformer.addTransformer(new MarginPageTransformer(25));
-        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+        ApiService apiService = new ApiService(this, app.TAG);
+        apiService.getTopMovie(new TopMovieInterfaceCallBack() {
             @Override
-            public void transformPage(@NonNull View page, float position) {
-                float r = 1 - Math.abs(position);
-                page.setScaleY(0.85f + r * 0.15f);
+            public void onSuccess(List<TopMovieModel> list) {
+                topMovieVp.setOffscreenPageLimit(3);
+                topMovieVp.setClipToPadding(false);
+                topMovieVp.setClipChildren(false);
+                topMovieVp.getChildAt(0).setOverScrollMode(RecyclerView.OVER_SCROLL_NEVER);
+                TopMovieMainAdapter adapter = new TopMovieMainAdapter(list);
+                topMovieVp.setAdapter(adapter);
+                topMovieVp.setCurrentItem(1, false);
+            }
+
+            @Override
+            public void onError(VolleyError error) {
+                Log.e(app.TAG, error.getMessage());
             }
         });
-        viewPager2.setPageTransformer(compositePageTransformer);
 
-        TopMovieVolley topMovieVolley = new TopMovieVolley(viewPager2);
-        topMovieVolley.setRequestQueueLimited();
+
+        setViewPageTransformer(topMovieVp);
+
 
     }
 
     private void setSeries() {
         RecyclerView seriesRV = binding.rvMainSeries;
-        seriesRV.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, true));
-        seriesRV.setClipToPadding(false);
-        seriesRV.setHasFixedSize(true);
 
-        SeriesVolley seriesVolley = new SeriesVolley(seriesRV);
-        seriesVolley.setRequestQueueLimited();
+        ApiService apiService = new ApiService(this, app.TAG);
+        apiService.getSeries(new SeriesInterfaceCallBack() {
+            @Override
+            public void onSuccess(List<SeriesModel> list) {
+                seriesRV.setLayoutManager(new LinearLayoutManager(MainActivity.this, LinearLayoutManager.HORIZONTAL, true));
+                seriesRV.setClipToPadding(false);
+                seriesRV.setHasFixedSize(true);
+                SeriesMainAdapter adapter = new SeriesMainAdapter(list);
+                seriesRV.setAdapter(adapter);
+
+            }
+
+            @Override
+            public void onError(VolleyError error) {
+                Log.e(app.TAG, error.getMessage());
+            }
+        });
     }
 
     private void setWatchAll() {
@@ -154,11 +207,27 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //SetTransformers To ViewPAger
+    private void setViewPageTransformer(ViewPager2 viewPager) {
+
+        CompositePageTransformer compositePageTransformer = new CompositePageTransformer();
+        compositePageTransformer.addTransformer(new MarginPageTransformer(25));
+        compositePageTransformer.addTransformer(new ViewPager2.PageTransformer() {
+            @Override
+            public void transformPage(@NonNull View page, float position) {
+                float r = 1 - Math.abs(position);
+                page.setScaleY(0.85f + r * 0.15f);
+            }
+        });
+        viewPager.setPageTransformer(compositePageTransformer);
+
+    }
+
     //Timer For Slider
     private void setSliderTimer() {
         TimerSlider timerSlider = new TimerSlider();
         Timer timer = new Timer();
-        timer.scheduleAtFixedRate(timerSlider, 5000, 3000);
+        timer.scheduleAtFixedRate(timerSlider, 8000, 3000);
     }
 
     //Timer for Slider
@@ -168,10 +237,10 @@ public class MainActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if (slider.getCurrentItem() < list.size() - 1) {
-                        slider.setCurrentItem(slider.getCurrentItem() + 1);
+                    if (sliderVp.getCurrentItem() < list.size() - 1) {
+                        sliderVp.setCurrentItem(sliderVp.getCurrentItem() + 1);
                     } else {
-                        slider.setCurrentItem(0);
+                        sliderVp.setCurrentItem(0);
                     }
                 }
             });
