@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
 
-        FetchingData();
+        splashScreen();
         setSlider();
         setSliderTimer();
         setGenre();
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void FetchingData() {
+    private void splashScreen() {
         ConstraintLayout container = binding.clMainContainer;
         LottieAnimationView intro = binding.lottie;
         new Handler().postDelayed(new Runnable() {
