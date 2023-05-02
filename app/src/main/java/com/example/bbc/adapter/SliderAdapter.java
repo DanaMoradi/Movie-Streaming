@@ -1,6 +1,5 @@
 package com.example.bbc.adapter;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,9 +7,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-import com.example.bbc.activity.DetailPageActivity;
-import com.example.bbc.application.app;
 import com.example.bbc.databinding.ItemSliderBinding;
+import com.example.bbc.interfaces.BottomSheetClicked;
 import com.example.bbc.model.SliderModel;
 import com.squareup.picasso.Picasso;
 
@@ -20,12 +18,14 @@ public class SliderAdapter extends PagerAdapter {
 
 
     private ItemSliderBinding binding;
-    List<SliderModel> list;
+    private List<SliderModel> list;
+    private BottomSheetClicked bottomSheetClicked;
 
-    public SliderAdapter(List<SliderModel> list) {
+
+    public SliderAdapter(List<SliderModel> list, BottomSheetClicked bottomSheetClicked) {
         this.list = list;
+        this.bottomSheetClicked = bottomSheetClicked;
     }
-
 
     @Override
     public int getCount() {
@@ -40,14 +40,12 @@ public class SliderAdapter extends PagerAdapter {
         binding = ItemSliderBinding.inflate(LayoutInflater.from(container.getContext()), container, false);
         View view = binding.getRoot();
         Picasso.get().load(list.get(position).getImg()).into(binding.ivSlider);
-
         binding.ivSlider.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                bottomSheetClicked.itemClicked(list.get(position).getId());
             }
         });
-
 
         container.addView(view);
         return view;

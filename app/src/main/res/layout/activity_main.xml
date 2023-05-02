@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/warm_gray_900"
+    android:fitsSystemWindows="true"
     android:scrollbars="none"
     tools:context=".activity.MainActivity">
 
+    <!--Splash-->
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/lottie"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_gravity="center"
         app:lottie_autoPlay="true"
         app:lottie_rawRes="@raw/movie_intro" />
 
@@ -31,241 +30,367 @@
             android:id="@+id/cl_mainContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="gone">
-
-
+            android:visibility="visible">
             <!--AppBar-->
-            <com.google.android.material.appbar.AppBarLayout
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/appbar"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@color/warm_gray_900"
-                android:gravity="center"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_appbar"
+                android:elevation="30dp"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:layout_width="match_parent"
+                <ImageView
+                    android:id="@+id/iv_appbar_logo"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:background="@drawable/ic_baseline_fav_32"
+                    android:clickable="true"
+                    android:contentDescription="@string/todo"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/app_name"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:background="@drawable/ic_baseline_search_32"
+                    android:clickable="true"
+                    android:contentDescription="@string/todo"
+                    android:focusable="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/iv_appbar_logo"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="SpeakableTextPresentCheck,TouchTargetSizeCheck,DuplicateSpeakableTextCheck" />
+
+                <TextView
+                    android:id="@+id/tv_appBar_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
                     android:textColor="@color/text_white"
-                    android:textStyle="bold" />
-            </com.google.android.material.appbar.AppBarLayout>
+                    android:textSize="@dimen/_16ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:ignore="RelativeOverlap"
+                    tools:text="@string/app_name" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_main_account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:background="@color/warm_gray_900"
+                    android:contentDescription="@string/todo"
+                    android:tint="@color/yellow_500"
+                    app:backgroundTint="@color/warm_gray_900"
+                    app:fabCustomSize="@dimen/_24sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_round_person_24" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <!--Slider-->
             <androidx.viewpager.widget.ViewPager
                 android:id="@+id/vp_main_slider"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_180sdp"
+                android:layout_height="0dp"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.32"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/appbar"
-                tools:ignore="SpeakableTextPresentCheck" />
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SpeakableTextPresentCheck">
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tabLayout"
-                android:layout_width="0dp"
+            </androidx.viewpager.widget.ViewPager>
+            <!--Shadow-->
+            <TextView
+                android:id="@+id/tv_main_sliderShadow"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:background="@drawable/bg_tab_layout"
+                app:layout_constraintBottom_toBottomOf="@id/vp_main_slider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHeight_percent="0.08"
+                app:layout_constraintStart_toStartOf="parent" />
+            <!--Indicator-->
+            <com.itsronald.widget.ViewPagerIndicator
+                android:id="@+id/view_pager_indicator"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/warm_gray_900"
+                android:layout_gravity="bottom|center_horizontal"
+                android:gravity="center"
+                android:paddingBottom="@dimen/_10sdp"
+                app:dotRadius="@dimen/_3sdp"
+                app:layout_constraintBottom_toTopOf="@id/rv_main_genre"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/vp_main_slider"
-                app:tabBackground="@drawable/bg_slider_tabs"
-                app:tabGravity="center"
-                app:tabIndicatorHeight="0dp"
-                tools:ignore="SpeakableTextPresentCheck" />
+                app:selectedDotColor="@color/yellow_500"
+                app:unselectedDotColor="@color/white"
+                app:viewPagerId="@id/vp_main_slider" />
             <!--Genre-->
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv_genre_watchAll"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_8sdp"
-                android:background="@drawable/gradiant_main_bg"
-                android:clickable="true"
-                android:focusable="true"
-                app:cardCornerRadius="@dimen/_10sdp"
-                app:cardElevation="@dimen/_10sdp"
-                app:cardPreventCornerOverlap="true"
-                app:cardUseCompatPadding="false"
-                app:layout_constraintEnd_toEndOf="@id/main_right_guidLine"
-                app:layout_constraintTop_toBottomOf="@id/tabLayout">
-
-                <RelativeLayout
-                    android:id="@+id/rl_genre_watchAll"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@drawable/genre_radius">
-
-
-                    <com.makeramen.roundedimageview.RoundedImageView
-                        android:id="@+id/iv_main_genre"
-                        android:layout_width="@dimen/_70sdp"
-                        android:layout_height="@dimen/_55sdp"
-                        android:clickable="true"
-                        android:focusable="true"
-                        android:scaleType="fitXY"
-                        android:src="@drawable/genre"
-                        app:riv_corner_radius="@dimen/_10sdp"
-                        tools:ignore="SpeakableTextPresentCheck" />
-
-                    <com.makeramen.roundedimageview.RoundedImageView
-
-                        android:layout_width="@dimen/_70sdp"
-                        android:layout_height="@dimen/_55sdp"
-                        android:alpha="0.6"
-                        android:background="@drawable/genre_radius"
-                        android:elevation="@dimen/_2sdp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/tv_genre_tittle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:elevation="@dimen/_20sdp"
-                        android:fontFamily="@font/iranian_sans_bold"
-                        android:gravity="center"
-                        android:lines="1"
-                        android:text="@string/more"
-                        android:textColor="@color/text_white"
-                        android:textSize="@dimen/_10ssp"
-                        android:textStyle="bold" />
-                </RelativeLayout>
-
-            </androidx.cardview.widget.CardView>
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_main_genre"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:elevation="@dimen/_10sdp"
-                app:layout_constraintEnd_toStartOf="@+id/cv_genre_watchAll"
+                app:layout_constraintBottom_toBottomOf="@id/tv_main_sliderShadow"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tabLayout" />
-            <!--Top Movie Text-->
-            <RelativeLayout
-                android:id="@+id/rl_main_topMovie"
+                tools:itemCount="1"
+                tools:listitem="@layout/item_main_genre" />
+            <!--Suggestion App Movie Text-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_main_suggestMovie"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_14sdp"
-                android:background="@color/gray_900"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toStartOf="@+id/main_right_guidLine"
-                app:layout_constraintStart_toStartOf="@+id/main_left_guideLine"
-                app:layout_constraintTop_toBottomOf="@id/rv_main_genre">
+                android:elevation="@dimen/_30sdp"
+                app:layout_constraintEnd_toEndOf="@id/main_right_guidLine"
+                app:layout_constraintStart_toStartOf="@id/main_left_guideLine"
+                app:layout_constraintTop_toBottomOf="@id/vp_main_slider">
 
                 <View
-                    android:id="@+id/blue_line"
-                    android:layout_width="@dimen/_4sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_alignBaseline="@id/tv_main_topMovieTxt"
-                    android:layout_alignParentEnd="true"
+                    android:id="@+id/view_suggestionLine_movie"
+                    android:layout_width="@dimen/_2sdp"
+                    android:layout_height="@dimen/_14sdp"
                     android:layout_centerVertical="true"
-                    android:background="@color/light_blue_700" />
+                    android:background="@color/light_blue_700"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/iranian_sans_bold"
+                    android:gravity="center"
+                    android:text="@string/today_suggestion_movie"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/view_suggestionLine_movie"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--Suggestion App Movie Image-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_suggestionMovie"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:background="@color/warm_gray_900"
+                app:cardCornerRadius="@dimen/_12sdp"
+                app:cardElevation="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="@id/main_right_guidLine"
+                app:layout_constraintStart_toStartOf="@id/main_left_guideLine"
+                app:layout_constraintTop_toBottomOf="@id/cl_main_suggestMovie">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/iv_suggestionMovie"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/genre" />
+
+            </androidx.cardview.widget.CardView>
+            <!--Top Movie Text-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_main_topMovie"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_14sdp"
+                app:layout_constraintEnd_toEndOf="@id/main_right_guidLine"
+                app:layout_constraintStart_toStartOf="@id/main_left_guideLine"
+                app:layout_constraintTop_toBottomOf="@id/card_suggestionMovie">
+
+                <View
+                    android:id="@+id/view_topMovie"
+                    android:layout_width="@dimen/_2sdp"
+                    android:layout_height="@dimen/_14sdp"
+                    android:layout_centerVertical="true"
+                    android:background="@color/light_blue_700"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
                 <TextView
                     android:id="@+id/tv_main_topMovieTxt"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    android:layout_height="0dp"
                     android:layout_marginEnd="@dimen/_5sdp"
-                    android:layout_toStartOf="@id/blue_line"
                     android:fontFamily="@font/iranian_sans_bold"
+                    android:gravity="center"
                     android:text="@string/topMovie"
                     android:textColor="@color/text_white"
                     android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
-                    tools:ignore="RelativeOverlap" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/view_topMovie"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/tv_watchAllMovies"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:text="@string/more"
-                    android:textColor="#0091EA"
+                    android:textColor="@color/light_blue_200"
                     android:textSize="@dimen/_10ssp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <!--Top Movie ViewPager2-->
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/vp_main_topMovie"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@color/gray_900"
+                android:elevation="@dimen/_30sdp"
                 android:layoutDirection="rtl"
-                android:paddingHorizontal="@dimen/_90sdp"
+                android:paddingHorizontal="@dimen/_80sdp"
                 android:paddingBottom="@dimen/_4sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rl_main_topMovie" />
-            <!--Top Series Text-->
-            <RelativeLayout
-                android:id="@+id/rl_main_topSeries"
+                app:layout_constraintTop_toBottomOf="@id/cl_main_topMovie" />
+            <!--Suggestion App Series Text-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_main_suggestSeries"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_14sdp"
-                android:background="@color/gray_900"
-                android:orientation="horizontal"
-                app:layout_constraintEnd_toStartOf="@+id/main_right_guidLine"
-                app:layout_constraintStart_toStartOf="@+id/main_left_guideLine"
+                app:layout_constraintEnd_toEndOf="@id/main_right_guidLine"
+                app:layout_constraintStart_toStartOf="@id/main_left_guideLine"
                 app:layout_constraintTop_toBottomOf="@id/vp_main_topMovie">
 
                 <View
-                    android:id="@+id/series_blue_line"
-                    android:layout_width="@dimen/_4sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_alignBaseline="@id/tv_main_series"
-                    android:layout_alignParentEnd="true"
+                    android:id="@+id/view_suggestionLine_series"
+                    android:layout_width="@dimen/_2sdp"
+                    android:layout_height="@dimen/_14sdp"
                     android:layout_centerVertical="true"
-                    android:background="@color/light_blue_700" />
+                    android:background="@color/light_blue_700"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:fontFamily="@font/iranian_sans_bold"
+                    android:gravity="center"
+                    android:text="@string/today_suggestion_series"
+                    android:textColor="@color/text_white"
+                    android:textSize="@dimen/_12ssp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/view_suggestionLine_series"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <!--Suggestion App Series Image-->
+            <androidx.cardview.widget.CardView
+                android:id="@+id/card_suggestionSeries"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_80sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:background="@color/warm_gray_900"
+                app:cardCornerRadius="@dimen/_12sdp"
+                app:cardElevation="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="@id/main_right_guidLine"
+                app:layout_constraintStart_toStartOf="@id/main_left_guideLine"
+                app:layout_constraintTop_toBottomOf="@id/cl_main_suggestSeries">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/iv_suggestionSeries"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/genre" />
+
+            </androidx.cardview.widget.CardView>
+            <!--Top Series Text-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_main_topSeries"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toStartOf="@+id/main_right_guidLine"
+                app:layout_constraintStart_toStartOf="@+id/main_left_guideLine"
+                app:layout_constraintTop_toBottomOf="@id/card_suggestionSeries">
+
+                <View
+                    android:id="@+id/view_topSeries"
+                    android:layout_width="@dimen/_2sdp"
+                    android:layout_height="@dimen/_14sdp"
+                    android:layout_centerVertical="true"
+                    android:background="@color/light_blue_700"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_main_series"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    android:layout_height="0dp"
                     android:layout_marginEnd="@dimen/_5sdp"
-                    android:layout_toStartOf="@id/series_blue_line"
                     android:fontFamily="@font/iranian_sans_bold"
+                    android:gravity="center"
                     android:text="@string/topSeries"
                     android:textColor="@color/text_white"
                     android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
-                    tools:ignore="RelativeOverlap" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/view_topSeries"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
+                <com.google.android.material.button.MaterialButton
                     android:id="@+id/tv_watchAllSeries"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
                     android:text="@string/more"
-                    android:textColor="@color/light_blue_700"
+                    android:textColor="@color/light_blue_200"
                     android:textSize="@dimen/_10ssp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </RelativeLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
             <!--Top Series RecyclerView-->
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rv_main_Series"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/gray_900"
-                android:padding="@dimen/_15sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/rl_main_topSeries" />
+                app:layout_constraintTop_toBottomOf="@id/cl_main_topSeries" />
+
             <!--Statics Text-->
-            <RelativeLayout
-                android:id="@+id/rl_main_static"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cl_main_static"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_14sdp"
@@ -275,46 +400,52 @@
                 app:layout_constraintTop_toBottomOf="@id/rv_main_Series">
 
                 <View
-                    android:id="@+id/static_blue_line"
-                    android:layout_width="@dimen/_4sdp"
-                    android:layout_height="@dimen/_20sdp"
-                    android:layout_alignBaseline="@id/tv_main_static"
-                    android:layout_alignParentEnd="true"
+                    android:id="@+id/view_static"
+                    android:layout_width="@dimen/_2sdp"
+                    android:layout_height="@dimen/_14sdp"
                     android:layout_centerVertical="true"
-                    android:background="@color/light_blue_700" />
-
+                    android:background="@color/light_blue_700"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_main_static"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+                    android:layout_height="0dp"
                     android:layout_marginEnd="@dimen/_5sdp"
-                    android:layout_toStartOf="@id/static_blue_line"
                     android:fontFamily="@font/iranian_sans_bold"
+                    android:gravity="center"
                     android:text="@string/moviesStatics"
                     android:textColor="@color/text_white"
                     android:textSize="@dimen/_12ssp"
                     android:textStyle="bold"
-                    tools:ignore="RelativeOverlap" />
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/view_static"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            </RelativeLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_static"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:cardUseCompatPadding="true"
+                android:layout_marginTop="@dimen/_14sdp"
+                android:elevation="@dimen/_20sdp"
+                app:cardBackgroundColor="@color/warm_gray_900"
+                app:cardCornerRadius="@dimen/_4sdp"
+                app:cardElevation="@dimen/_20sdp"
                 app:layout_constraintEnd_toEndOf="@id/main_right_guidLine"
                 app:layout_constraintStart_toStartOf="@id/main_left_guideLine"
-                app:layout_constraintTop_toBottomOf="@id/rl_main_static">
+                app:layout_constraintTop_toBottomOf="@id/cl_main_static">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_gravity="center"
                     android:gravity="center"
-                    android:padding="@dimen/_20sdp">
+                    android:padding="@dimen/_8sdp">
 
                     <TextView
                         android:id="@+id/static_movie"
@@ -446,6 +577,7 @@
                         />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
+
             <!--GuidLines-->
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/main_right_guidLine"
@@ -464,4 +596,11 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fram_bottomSheetFragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

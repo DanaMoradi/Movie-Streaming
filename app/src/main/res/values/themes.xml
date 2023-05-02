@@ -10,8 +10,13 @@
         <item name="colorSecondaryVariant">@color/yellow_500</item>
         <item name="colorOnSecondary">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">@color/warm_gray_900</item>
+
         <!-- Font Family-->
         <item name="fontFamily">@font/iranian_sans</item>
     </style>
+
+
+
+
 </resources>

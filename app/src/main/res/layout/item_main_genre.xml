@@ -3,43 +3,25 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/_8sdp">
+    android:layout_height="wrap_content">
 
-
-    <com.makeramen.roundedimageview.RoundedImageView
-        android:id="@+id/iv_main_genre"
-        android:layout_width="@dimen/_70sdp"
-        android:layout_height="@dimen/_55sdp"
-        android:scaleType="fitXY"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:riv_corner_radius="@dimen/_10sdp" />
-
-    <com.makeramen.roundedimageview.RoundedImageView
-
-        android:layout_width="@dimen/_70sdp"
-        android:layout_height="@dimen/_55sdp"
-        android:background="@drawable/gradiant_shadow_bg"
-        android:elevation="@dimen/_2sdp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_genre_tittle"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:elevation="@dimen/_20sdp"
-        android:fontFamily="sans-serif-medium"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_4sdp"
+        android:background="@drawable/genre_radius"
         android:gravity="center"
-        android:padding="@dimen/_2sdp"
+        android:paddingHorizontal="@dimen/_14sdp"
+        android:paddingVertical="@dimen/_8sdp"
         android:textColor="@color/white"
-        android:textSize="@dimen/_12ssp"
+        android:textSize="@dimen/_11ssp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_main_genre"
-        app:layout_constraintEnd_toEndOf="@+id/iv_main_genre"
-        app:layout_constraintStart_toStartOf="@id/iv_main_genre"
-        tools:text="Movie" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="اکشن" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

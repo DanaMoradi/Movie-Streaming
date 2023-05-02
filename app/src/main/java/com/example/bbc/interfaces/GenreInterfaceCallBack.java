@@ -5,10 +5,8 @@ import com.example.bbc.model.GenreModel;
 
 import java.util.List;
 
-public interface GenreInterfaceCallBack {
+public interface GenreInterfaceCallBack extends VolleyErrorInterfaceCallBack {
 
     void onSuccess(List<GenreModel> list);
-
-    void onError(VolleyError error);
 
 }

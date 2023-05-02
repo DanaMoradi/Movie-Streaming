@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
-import com.example.bbc.databinding.ItemSplashScreenBinding;
+import com.example.bbc.databinding.ItemIntroBinding;
 import com.example.bbc.model.IntroModel;
 
 import java.util.List;
@@ -15,7 +15,7 @@ import java.util.List;
 public class IntroAdapter extends PagerAdapter {
 
     List<IntroModel> list;
-    private ItemSplashScreenBinding binding;
+    private ItemIntroBinding binding;
 
     public IntroAdapter(List<IntroModel> list) {
         this.list = list;
@@ -30,7 +30,7 @@ public class IntroAdapter extends PagerAdapter {
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
 
-        binding = ItemSplashScreenBinding.inflate(LayoutInflater.from(container.getContext()), container, false);
+        binding = ItemIntroBinding.inflate(LayoutInflater.from(container.getContext()), container, false);
         View view = binding.getRoot();
 
         binding.lottieItemSplash.setAnimation(list.get(position).getImg());

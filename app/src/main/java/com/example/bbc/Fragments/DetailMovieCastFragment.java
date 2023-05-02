@@ -26,11 +26,11 @@ public class DetailMovieCastFragment extends Fragment implements CastInterfaceCa
 
     FragmentDetailMovieBinding binding;
 
-    private int id;
+    private Long id;
     private RecyclerView castRecyclerView;
 
 
-    public DetailMovieCastFragment(int id) {
+    public DetailMovieCastFragment(Long id) {
         this.id = id;
     }
 
@@ -47,7 +47,7 @@ public class DetailMovieCastFragment extends Fragment implements CastInterfaceCa
 
 
         castRecyclerView = binding.rvDetailMovie;
-        castRecyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), 2));
+        castRecyclerView.setLayoutManager(new GridLayoutManager(view.getContext(), 3));
         castRecyclerView.setHasFixedSize(true);
 
         ApiService apiService = new ApiService(getContext(), app.TAG);

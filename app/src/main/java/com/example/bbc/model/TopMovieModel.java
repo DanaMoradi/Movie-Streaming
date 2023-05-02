@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class TopMovieModel implements Parcelable {
-    private int id;
+    private Long id;
     private String name;
     private String img;
     private String director;
@@ -28,7 +28,7 @@ public class TopMovieModel implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        dest.writeInt(this.id);
+        dest.writeLong(this.id);
         dest.writeString(this.name);
         dest.writeString(this.img);
         dest.writeString(this.director);
@@ -40,7 +40,7 @@ public class TopMovieModel implements Parcelable {
     }
 
     public void readFromParcel(Parcel source) {
-        this.id = source.readInt();
+        this.id = source.readLong();
         this.name = source.readString();
         this.img = source.readString();
         this.director = source.readString();
@@ -55,7 +55,7 @@ public class TopMovieModel implements Parcelable {
     }
 
     protected TopMovieModel(Parcel in) {
-        this.id = in.readInt();
+        this.id = in.readLong();
         this.name = in.readString();
         this.img = in.readString();
         this.director = in.readString();

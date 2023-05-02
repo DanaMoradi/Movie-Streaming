@@ -3,12 +3,12 @@ package com.example.bbc.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bbc.databinding.ItemSeriesBinding;
+import com.example.bbc.interfaces.BottomSheetClicked;
 import com.example.bbc.model.SeriesModel;
 import com.squareup.picasso.Picasso;
 
@@ -19,9 +19,11 @@ public class SeriesMainAdapter extends RecyclerView.Adapter<SeriesMainAdapter.Se
 
     List<SeriesModel> list;
     ItemSeriesBinding binding;
+    private static BottomSheetClicked bottomSheetClicked;
 
-    public SeriesMainAdapter(List<SeriesModel> list) {
+    public SeriesMainAdapter(List<SeriesModel> list, BottomSheetClicked bottomSheetClicked) {
         this.list = list;
+        this.bottomSheetClicked = bottomSheetClicked;
     }
 
     @NonNull
@@ -50,12 +52,11 @@ public class SeriesMainAdapter extends RecyclerView.Adapter<SeriesMainAdapter.Se
         }
 
         private void onBindSeries(SeriesModel item) {
-            view.tvSeriesName.setText(item.getName());
             Picasso.get().load(item.getImg()).into(view.ivMainSeries);
-            view.btnMainSeries.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Toast.makeText(itemView.getContext(), item.getName(), Toast.LENGTH_SHORT).show();
+                    bottomSheetClicked.itemClicked(item.getId());
                 }
             });
 

@@ -5,7 +5,6 @@ import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
-import com.example.bbc.Fragments.GenreWatchAllFragment;
 import com.example.bbc.Fragments.MovieWatchAllFragment;
 import com.example.bbc.Fragments.SeriesWatchAllFragment;
 import com.example.bbc.R;
@@ -31,11 +30,6 @@ public class WatchAllActivity extends AppCompatActivity {
                 FragmentTransaction watchAllMovieTransaction = getSupportFragmentManager().beginTransaction();
                 watchAllMovieTransaction.replace(R.id.frame_watchAll_fragment, new MovieWatchAllFragment());
                 watchAllMovieTransaction.commit();
-                break;
-            case app.ALL_GENRE:
-                FragmentTransaction watchAllGenreTransaction = getSupportFragmentManager().beginTransaction();
-                watchAllGenreTransaction.replace(R.id.frame_watchAll_fragment, new GenreWatchAllFragment());
-                watchAllGenreTransaction.commit();
                 break;
 
             case app.ALL_SERIES:

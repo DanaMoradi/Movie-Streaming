@@ -5,11 +5,10 @@ import com.example.bbc.model.RelatedModel;
 
 import java.util.List;
 
-public interface RelatedMovieCallBack {
+public interface RelatedMovieCallBack extends VolleyErrorInterfaceCallBack{
 
     void onSuccess(List<RelatedModel> list);
 
-    void onError(VolleyError error);
 
 
 }

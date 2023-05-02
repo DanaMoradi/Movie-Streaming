@@ -1,26 +1,23 @@
 package com.example.bbc.adapter;
 
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.bbc.databinding.ItemMainGenreBinding;
 import com.example.bbc.model.GenreModel;
-import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
-public class GenreMainAdapter extends RecyclerView.Adapter<GenreMainAdapter.GenreViewHolder> {
+public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.GenreViewHolder> {
 
     private ItemMainGenreBinding binding;
     List<GenreModel> list;
 
 
-    public GenreMainAdapter(List<GenreModel> list) {
+    public GenreAdapter(List<GenreModel> list) {
         this.list = list;
     }
 
@@ -44,7 +41,7 @@ public class GenreMainAdapter extends RecyclerView.Adapter<GenreMainAdapter.Genr
     public static class GenreViewHolder extends RecyclerView.ViewHolder {
 
         ItemMainGenreBinding view;
-        
+
 
         public GenreViewHolder(@NonNull ItemMainGenreBinding v) {
             super(v.getRoot());
@@ -53,15 +50,6 @@ public class GenreMainAdapter extends RecyclerView.Adapter<GenreMainAdapter.Genr
 
         void bindData(GenreModel item) {
             view.tvGenreTittle.setText(item.getName());
-            Picasso.get().load(item.getImg()).into(view.ivMainGenre);
-
-            //Click Listener For Genre Items
-            view.ivMainGenre.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Toast.makeText(v.getContext(), item.getName() + "", Toast.LENGTH_SHORT).show();
-                }
-            });
         }
 
     }

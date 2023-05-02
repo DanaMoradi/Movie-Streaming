@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_bottom_sheet"
+    android:layoutDirection="rtl"
+    app:layout_behavior="@string/bottom_sheet_behavior">
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <RelativeLayout
+                android:id="@+id/rv_bottomSheet"
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_110sdp"
+                android:layout_alignParentEnd="true">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/iv_bottomSheet"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0.9"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/genre"
+                    app:riv_corner_radius_top_left="@dimen/_14sdp" />
+
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/fab_play"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:backgroundTint="@color/gray_900"
+                    android:contentDescription="@string/todo"
+                    android:layoutDirection="ltr"
+                    app:srcCompat="@drawable/ic_baseline_play_circle_outline_24"
+                    app:tint="@color/yellow_500" />
+
+
+            </RelativeLayout>
+
+
+            <ImageView
+                android:id="@+id/iv_bottomSheet_fav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:contentDescription="@string/todo"
+                android:paddingEnd="@dimen/_10sdp"
+                app:srcCompat="@drawable/ic_baseline_bookmark_add_24"
+                tools:ignore="RtlSymmetry" />
+
+
+            <TextView
+                android:id="@+id/tv_bottomSheet_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_toStartOf="@id/rv_bottomSheet"
+                android:paddingEnd="@dimen/_12sdp"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/_16ssp"
+                tools:ignore="RtlSymmetry"
+                tools:text="Movie Name" />
+
+            <TextView
+                android:id="@+id/tv_bottomSheet_director"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_bottomSheet_name"
+                android:layout_toStartOf="@id/rv_bottomSheet"
+                android:paddingEnd="@dimen/_12sdp"
+                android:textColor="@color/gray_100"
+                android:textSize="@dimen/_10ssp"
+                tools:ignore="RtlSymmetry"
+                tools:text="Movie Name" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_below="@id/tv_bottomSheet_director"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_toStartOf="@id/rv_bottomSheet"
+                android:background="@color/gray_700" />
+
+            <TextView
+                android:id="@+id/tv_bottomSheet_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_bottomSheet_director"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_toStartOf="@id/rv_bottomSheet"
+                android:ellipsize="end"
+                android:justificationMode="inter_word"
+                android:lineHeight="@dimen/_15sdp"
+                android:lines="4"
+                android:paddingHorizontal="@dimen/_8sdp"
+                android:textColor="@color/text_white"
+                android:textSize="@dimen/_8sdp"
+                tools:ignore="UnusedAttribute"
+                tools:text="در قسمت دوم این فیلم که داستان چند سال بعد فیلم اول را روایت می کند خواهیم دید که خانواده بیلی با یکدیگر همکاری می کنند تا جلوی نابود شدن دنیا توسط «دختران اطلس» را بگیرند؛ آن ها برای این کار باید برای صلح با خدایان سفر کنند." />
+
+
+            <View
+                android:id="@+id/divider2"
+                android:layout_width="wrap_content"
+                android:layout_height="1dp"
+                android:layout_below="@id/rv_bottomSheet"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_toStartOf="@id/rv_bottomSheet" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/divider2">
+
+                <LinearLayout
+                    android:id="@+id/ll_bottomSheet_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:layout_toStartOf="@id/btn_bottomSheet_detail"
+                    android:layoutDirection="ltr"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_bottomSheet_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:src="@drawable/ic_baseline_access_time_24"
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/tv_bottomSheet_time"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:fontFamily="@font/iranian_sans"
+                        android:paddingTop="@dimen/_2sdp"
+                        android:text="01 : 32 "
+                        android:textColor="@color/text_white"
+                        android:textSize="@dimen/_12ssp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/ll_bottomSheet_rateAll"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+
+                        android:id="@+id/ll_bottomSheet_rate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_8ssp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_bottomSheet_rate"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:textColor="@color/text_white"
+                            android:textSize="@dimen/_10ssp"
+                            android:textStyle="bold"
+                            tools:text="9 / 10" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:text="2.3k"
+                            android:textColor="@color/text_white"
+                            android:textSize="@dimen/_8ssp" />
+
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_bottomSheet_rate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@string/todo"
+                        app:srcCompat="@drawable/ic_baseline_star_24" />
+
+
+                </LinearLayout>
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_bottomSheet_detail"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:backgroundTint="@color/light_blue_700"
+                    android:layoutDirection="ltr"
+                    android:text="@string/more_details"
+                    android:textColor="@color/text_white"
+                    app:icon="@drawable/ic_baseline_arrow_back_24"
+                    app:iconTint="@color/text_white" />
+
+
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+    </FrameLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

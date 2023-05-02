@@ -5,12 +5,11 @@ import com.example.bbc.model.SeriesModel;
 
 import java.util.List;
 
-public interface SeriesInterfaceCallBack {
+public interface SeriesInterfaceCallBack extends VolleyErrorInterfaceCallBack {
 
 
     void onSuccess(List<SeriesModel> list);
 
-    void onError(VolleyError error);
 
 
 }

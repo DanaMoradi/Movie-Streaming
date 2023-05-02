@@ -1,15 +1,11 @@
 package com.example.bbc.interfaces;
 
-import com.android.volley.VolleyError;
 import com.example.bbc.model.CastModel;
 
 import java.util.List;
 
-public interface CastInterfaceCallBack {
+public interface CastInterfaceCallBack extends VolleyErrorInterfaceCallBack {
 
     void onSuccess(List<CastModel> list);
-
-    void onError(VolleyError error);
-
 
 }

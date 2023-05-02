@@ -13,10 +13,10 @@
         android:layout_height="wrap_content">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
+            style="@style/Platform.MaterialComponents"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/gray_900"
-            android:theme="@style/Platform.MaterialComponents"
             app:contentScrim="@color/gray_900"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
@@ -39,7 +39,8 @@
                 android:backgroundTint="@color/gray_900"
                 android:contentDescription="@string/todo"
                 app:srcCompat="@drawable/ic_baseline_play_circle_outline_24"
-                app:tint="@color/yellow_500" />
+                app:tint="@color/yellow_500"
+                tools:ignore="DuplicateSpeakableTextCheck" />
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
@@ -65,119 +66,78 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <RelativeLayout
-                    android:layout_width="wrap_content"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
                     <TextView
                         android:id="@+id/tv_single_name"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:layout_alignParentTop="true"
                         android:textColor="@color/text_white"
                         android:textSize="@dimen/_14sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
                         tools:text="@string/app_name" />
-
 
                     <TextView
                         android:id="@+id/tv_single_genre"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:text="اکشن"
-                        android:textColor="@color/text_white" />
-
+                        android:textColor="@color/text_white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="اکشن" />
 
                     <View
                         android:id="@+id/divider"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_below="@id/tv_single_name"
                         android:layout_marginVertical="@dimen/_4sdp"
                         android:background="@color/gray_900"
                         app:layout_anchor="@+id/tv_single_name"
-                        app:layout_anchorGravity="center" />
+                        app:layout_anchorGravity="center"
+                        app:layout_constraintTop_toBottomOf="@id/tv_single_name" />
 
-
-                    <LinearLayout
-                        android:id="@+id/ll_single_director"
-                        android:layout_width="match_parent"
+                    <TextView
+                        android:id="@+id/tv_single_director"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/divider"
-                        android:orientation="horizontal">
+                        android:layout_gravity="center"
+                        android:layout_weight="8"
+                        android:gravity="start"
+                        android:textColor="@color/text_white"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/divider"
+                        tools:text="Dana Moradi" />
 
-
-                        <TextView
-                            android:id="@+id/tv_single_director"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="8"
-                            android:gravity="start"
-                            android:textColor="@color/text_white"
-                            tools:text="Dana Moradi" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_weight="2"
-                            android:gravity="start"
-                            android:text="@string/Director"
-                            android:textColor="@color/text_white" />
-
-
-                    </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="start"
+                        android:text="@string/Director"
+                        android:textColor="@color/text_white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/divider" />
 
                     <View
                         android:id="@+id/divider2"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_below="@id/ll_single_director"
                         android:layout_marginVertical="@dimen/_8sdp"
-                        android:background="@color/gray_900" />
-
-
-                    <LinearLayout
-                        android:id="@+id/ll_Single_time"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@id/divider2"
-                        android:layout_centerHorizontal="true"
-                        android:gravity="center"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/iv_watchSingle_time"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_marginEnd="@dimen/_8sdp"
-                            android:src="@drawable/ic_baseline_access_time_24"
-                            android:textColor="@color/text_white"
-                            android:textSize="@dimen/_10sdp" />
-
-                        <TextView
-                            android:id="@+id/tv_single_time"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="bottom"
-                            android:fontFamily="@font/iranian_sans"
-                            android:gravity="bottom"
-                            android:text="01 : 32 "
-                            android:textColor="@color/text_white"
-                            android:textSize="@dimen/_12ssp" />
-                    </LinearLayout>
+                        android:background="@color/gray_900"
+                        app:layout_constraintTop_toBottomOf="@id/tv_single_director" />
 
                     <LinearLayout
                         android:id="@+id/ll_Single_published"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/divider2"
-                        android:layout_alignStart="@id/ll_Single_time"
                         android:gravity="center"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/divider2"
+                        tools:ignore="UseCompoundDrawables">
 
                         <ImageView
                             android:id="@+id/iv_watchSingle_published"
@@ -185,6 +145,7 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_marginEnd="@dimen/_8sdp"
+                            android:contentDescription="@string/todo"
                             android:src="@drawable/ic_sharp_calendar_month_24"
                             android:textColor="@color/text_white"
                             android:textSize="@dimen/_10sdp" />
@@ -197,26 +158,60 @@
                             android:fontFamily="@font/iranian_sans"
                             android:gravity="bottom"
                             android:paddingTop="@dimen/_4sdp"
-                            android:text="23 ocb 2019 "
                             android:textColor="@color/text_white"
-                            android:textSize="@dimen/_10ssp" />
+                            android:textSize="@dimen/_10ssp"
+                            tools:text="23 ocb 2019 " />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_Single_time"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_centerHorizontal="true"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toStartOf="@id/ll_single_rate"
+                        app:layout_constraintStart_toEndOf="@id/ll_Single_published"
+                        app:layout_constraintTop_toBottomOf="@id/divider2"
+                        tools:ignore="UseCompoundDrawables">
+
+                        <ImageView
+                            android:id="@+id/iv_watchSingle_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_marginEnd="@dimen/_8sdp"
+                            android:contentDescription="@string/todo"
+                            android:src="@drawable/ic_baseline_access_time_24"
+                            android:textColor="@color/text_white"
+                            android:textSize="@dimen/_10sdp" />
+
+                        <TextView
+                            android:id="@+id/tv_single_time"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:fontFamily="@font/iranian_sans"
+                            android:gravity="bottom"
+                            android:textColor="@color/text_white"
+                            android:textSize="@dimen/_12ssp"
+                            tools:text="01 : 32 " />
                     </LinearLayout>
 
                     <LinearLayout
                         android:id="@+id/ll_single_rate"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/divider2"
-                        android:layout_alignParentEnd="true"
                         android:layout_toStartOf="@id/ll_Single_time"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="@id/divider3"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/divider2">
 
                         <ImageView
                             android:id="@+id/iv_watchAllMovie_rate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignBaseline="@id/ll_watchAllMovies_rate"
-                            android:layout_toStartOf="@id/ll_watchAllMovies_rate"
                             android:contentDescription="@string/todo"
                             app:srcCompat="@drawable/ic_baseline_star_24" />
 
@@ -224,7 +219,6 @@
                             android:id="@+id/ll_watchAllMovies_rate"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentEnd="true"
                             android:layout_marginStart="@dimen/_8ssp"
                             android:orientation="vertical">
 
@@ -233,10 +227,10 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center"
-                                android:text="9 / 10"
                                 android:textColor="@color/text_white"
                                 android:textSize="@dimen/_10ssp"
-                                android:textStyle="bold" />
+                                android:textStyle="bold"
+                                tools:text="9 / 10" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -244,34 +238,36 @@
                                 android:layout_gravity="center"
                                 android:text="2.3k"
                                 android:textColor="@color/text_white"
-                                android:textSize="@dimen/_8ssp" />
-
+                                android:textSize="@dimen/_8ssp"
+                                tools:ignore="HardcodedText" />
 
                         </LinearLayout>
-
-
                     </LinearLayout>
 
                     <View
                         android:id="@+id/divider3"
                         android:layout_width="match_parent"
                         android:layout_height="1dp"
-                        android:layout_below="@id/ll_Single_time"
-                        android:layout_marginVertical="@dimen/_4sdp"
-                        android:background="@color/gray_700" />
+                        android:layout_marginVertical="@dimen/_8sdp"
+                        android:background="@color/gray_700"
+                        app:layout_constraintBottom_toTopOf="@id/tv_single_description"
+                        app:layout_constraintTop_toBottomOf="@id/ll_Single_time" />
 
                     <TextView
                         android:id="@+id/tv_single_description"
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/divider3"
+                        android:layout_marginTop="@dimen/_4sdp"
                         android:justificationMode="inter_word"
                         android:lineHeight="@dimen/_18sdp"
                         android:textColor="@color/text_white"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/divider3"
                         tools:ignore="UnusedAttribute"
                         tools:text="در قسمت دوم این فیلم که داستان چند سال بعد فیلم اول را روایت می کند خواهیم دید که خانواده بیلی با یکدیگر همکاری می کنند تا جلوی نابود شدن دنیا توسط «دختران اطلس» را بگیرند؛ آن ها برای این کار باید برای صلح با خدایان سفر کنند." />
 
-                </RelativeLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.card.MaterialCardView>
 
@@ -279,58 +275,66 @@
                 android:id="@+id/cv_detailMovie_tabs"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                app:cardBackgroundColor="@color/warm_gray_900"
+                android:layout_marginTop="@dimen/_4sdp"
+                app:cardBackgroundColor="@color/gray_900"
                 app:cardCornerRadius="@dimen/_4sdp"
                 app:cardElevation="@dimen/_4sdp"
-                app:contentPaddingBottom="@dimen/_12sdp"
-                app:contentPaddingTop="@dimen/_6sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:contentPaddingBottom="@dimen/_8sdp"
+                app:contentPaddingLeft="@dimen/_12sdp"
+                app:contentPaddingRight="@dimen/_12sdp"
+                app:contentPaddingTop="@dimen/_8sdp"
                 app:layout_constraintTop_toBottomOf="@id/cv_detailMovie">
 
-
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical">
+                    android:layout_height="match_parent">
 
-                    <com.google.android.material.tabs.TabLayout
-                        android:id="@+id/tabs_detailMovie"
+                    <com.google.android.material.button.MaterialButtonToggleGroup
+                        android:id="@+id/tg_detailMovie"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="start"
+                        android:gravity="start"
+                        android:layoutDirection="rtl"
+                        app:checkedButton="@id/btn_detailMovie_cast"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:selectionRequired="true"
+                        app:singleSelection="true">
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_detailMovie_cast"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/cast"
+                            android:textColor="@color/text_white"
+                            app:cornerRadius="8dp"
+                            app:rippleColor="@color/yellow_200" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/btn_detailMovie_related"
+                            style="?attr/materialButtonOutlinedStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/releated_movie"
+                            android:textColor="@color/text_white"
+                            app:cornerRadius="8dp"
+                            app:rippleColor="@color/yellow_200" />
+
+
+                    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+                    <androidx.fragment.app.FragmentContainerView
+                        android:id="@+id/fram_detailMove"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/gray_900"
-                        android:layoutDirection="rtl"
-                        android:scrollbars="none"
-                        app:tabIndicatorAnimationMode="elastic"
-                        app:tabIndicatorColor="@color/yellow_500"
-                        app:tabIndicatorGravity="bottom"
-                        app:tabMode="scrollable"
-                        app:tabRippleColor="@color/yellow_500"
-                        app:tabSelectedTextColor="@color/yellow_500"
-                        app:tabTextColor="@color/text_white">
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tg_detailMovie" />
 
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
-                        <com.google.android.material.tabs.TabItem
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="بازیگران" />
-
-                        <com.google.android.material.tabs.TabItem
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="مرتبط" />
-
-
-                    </com.google.android.material.tabs.TabLayout>
-
-
-                    <androidx.viewpager2.widget.ViewPager2
-                        android:id="@+id/vp_detailMovie"
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_400sdp"
-                        android:background="@color/gray_900" />
-
-                </LinearLayout>
 
             </com.google.android.material.card.MaterialCardView>
 

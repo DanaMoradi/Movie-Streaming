@@ -10,6 +10,5 @@ public class GenreModel {
 
     private Long id;
     private String name;
-    private String img;
 
 }

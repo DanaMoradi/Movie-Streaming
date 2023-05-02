@@ -1,6 +1,5 @@
 package com.example.bbc.adapter;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,9 +8,8 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.bbc.activity.DetailPageActivity;
-import com.example.bbc.application.app;
 import com.example.bbc.databinding.ItemTopMovieBinding;
+import com.example.bbc.interfaces.BottomSheetClicked;
 import com.example.bbc.model.TopMovieModel;
 import com.squareup.picasso.Picasso;
 
@@ -22,10 +20,13 @@ public class TopMovieMainAdapter extends RecyclerView.Adapter<TopMovieMainAdapte
 
     List<TopMovieModel> list;
     ItemTopMovieBinding binding;
+    private static BottomSheetClicked bottomSheetClicked;
 
-    public TopMovieMainAdapter(List<TopMovieModel> list) {
+    public TopMovieMainAdapter(List<TopMovieModel> list, BottomSheetClicked bottomSheetClicked) {
         this.list = list;
+        this.bottomSheetClicked = bottomSheetClicked;
     }
+
 
     @NonNull
     @Override
@@ -59,26 +60,11 @@ public class TopMovieMainAdapter extends RecyclerView.Adapter<TopMovieMainAdapte
         private void onBindView(TopMovieModel item) {
 
             ImageView img = view.ivMainTopMain;
-            view.tvMainTopMovieName.setText(item.getName());
-            view.tvTopMovieDescription.setText(item.getDescription());
             Picasso.get().load(item.getImg()).into(img);
-
-            img.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (view.tvTopMovieDescription.getVisibility() == View.VISIBLE) {
-                        view.tvTopMovieDescription.setVisibility(View.GONE);
-                    } else {
-                        view.tvTopMovieDescription.setVisibility(View.VISIBLE);
-                    }
-                }
-            });
-            view.btnTopMovie.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(view.getRoot().getContext(), DetailPageActivity.class);
-                    intent.putExtra(app.SINGLE_MOVIE, item);
-                    view.getRoot().getContext().startActivity(intent);
+                    bottomSheetClicked.itemClicked(item.getId());
                 }
             });
         }

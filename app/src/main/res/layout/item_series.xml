@@ -1,81 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_marginHorizontal="@dimen/_10sdp"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_10sdp"
+    app:cardBackgroundColor="@color/warm_gray_900"
     app:cardMaxElevation="@dimen/_8sdp"
     app:cardPreventCornerOverlap="true">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <com.makeramen.roundedimageview.RoundedImageView
-            android:id="@+id/iv_main_series"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_160sdp"
-            android:scaleType="fitXY"
-            android:src="@drawable/genre"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:riv_corner_radius="@dimen/_10sdp" />
-
-        <ImageView
-            android:id="@+id/iv_series_bookmark"
-            android:layout_width="@dimen/_32sdp"
-            android:layout_height="@dimen/_32sdp"
-            android:elevation="@dimen/_10sdp"
-            android:src="@drawable/ic_baseline_bookmark_add_24"
-            app:layout_constraintEnd_toEndOf="@id/iv_main_series"
-            app:layout_constraintTop_toTopOf="@id/iv_main_series" />
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@drawable/gradiant_shadow_bg"
-            app:layout_constraintBottom_toBottomOf="@id/iv_main_series"
-            app:layout_constraintTop_toTopOf="@id/iv_main_series" />
-
-        <TextView
-            android:id="@+id/tv_series_name"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_12sdp"
-            android:layout_marginBottom="@dimen/_12sdp"
-            android:ellipsize="end"
-            android:gravity="end"
-            android:maxLines="1"
-            android:paddingHorizontal="@dimen/_4sdp"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_16ssp"
-            app:layout_constraintBottom_toBottomOf="@id/iv_main_series"
-            app:layout_constraintEnd_toEndOf="@id/iv_main_series"
-            app:layout_constraintStart_toEndOf="@+id/btn_main_series"
-            tools:ignore="RelativeOverlap,RtlSymmetry"
-            tools:text="Movie Name" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/btn_main_series"
-            android:layout_width="@dimen/_24sdp"
-            android:layout_height="@dimen/_24sdp"
-            android:layout_margin="@dimen/_8sdp"
-            android:backgroundTint="@color/light_blue_700"
-            android:contentDescription="@string/todo"
-            android:fontFamily="@font/iranian_sans"
-            android:paddingHorizontal="@dimen/_24sdp"
-            android:src="@drawable/ic_baseline_arrow_back_24"
-            android:text="@string/watchMovie"
-            android:textColor="@color/white"
-            android:textSize="@dimen/_12ssp"
-            app:fabCustomSize="@dimen/_24sdp"
-            app:layout_constraintBottom_toBottomOf="@id/iv_main_series"
-            app:layout_constraintStart_toStartOf="@id/iv_main_series" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/iv_main_series"
+        android:layout_width="@dimen/_100sdp"
+        android:layout_height="@dimen/_150sdp"
+        android:adjustViewBounds="true"
+        android:scaleType="fitXY"
+        android:src="@drawable/genre"
+        app:riv_corner_radius="@dimen/_10sdp" />
 
 </androidx.cardview.widget.CardView>
