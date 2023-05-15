@@ -8,7 +8,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UserModelResponse implements Parcelable {
+public class UserModel implements Parcelable {
 
     private String status;
     private long id;
@@ -42,10 +42,10 @@ public class UserModelResponse implements Parcelable {
         this.password = source.readString();
     }
 
-    public UserModelResponse() {
+    public UserModel() {
     }
 
-    protected UserModelResponse(Parcel in) {
+    protected UserModel(Parcel in) {
         this.status = in.readString();
         this.id = in.readLong();
         this.full_name = in.readString();
@@ -54,15 +54,15 @@ public class UserModelResponse implements Parcelable {
         this.password = in.readString();
     }
 
-    public static final Parcelable.Creator<UserModelResponse> CREATOR = new Parcelable.Creator<UserModelResponse>() {
+    public static final Parcelable.Creator<UserModel> CREATOR = new Parcelable.Creator<UserModel>() {
         @Override
-        public UserModelResponse createFromParcel(Parcel source) {
-            return new UserModelResponse(source);
+        public UserModel createFromParcel(Parcel source) {
+            return new UserModel(source);
         }
 
         @Override
-        public UserModelResponse[] newArray(int size) {
-            return new UserModelResponse[size];
+        public UserModel[] newArray(int size) {
+            return new UserModel[size];
         }
     };
 }

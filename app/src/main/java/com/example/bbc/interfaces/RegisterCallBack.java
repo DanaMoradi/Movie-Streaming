@@ -1,9 +1,9 @@
 package com.example.bbc.interfaces;
 
-import com.example.bbc.model.UserModel;
-
 public interface RegisterCallBack extends VolleyErrorInterfaceCallBack {
 
-    void onEmailAndPhoneCheck(UserModel item);
+    void onEmailAndPhoneCheck(String email, String phone);
+
+    void onAddUserCallBack(String item);
 
 }

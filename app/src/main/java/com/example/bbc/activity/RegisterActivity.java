@@ -3,29 +3,18 @@ package com.example.bbc.activity;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentTransaction;
 
+import com.example.bbc.Fragments.SignUpFragment;
+import com.example.bbc.R;
 import com.example.bbc.databinding.ActivitySignUpBinding;
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.snackbar.Snackbar;
 
-public class SignUpActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
 
     private ActivitySignUpBinding binding;
-    private TextInputEditText nameEt;
-    private TextInputEditText emailEt;
-    private TextInputEditText phoneEt;
-    private TextInputEditText passwordEt;
-    private TextInputEditText r_passwordEt;
-    private MaterialButton signUp;
-    private MaterialButton gotoSignIn;
-
-    private String name;
-    private String email;
-    private String phone;
-    private String password;
-    private String r_password;
-
+    private Long backPressedTime = 0L;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,24 +22,23 @@ public class SignUpActivity extends AppCompatActivity {
         binding = ActivitySignUpBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        init();
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.fram_register, new SignUpFragment());
+        fragmentTransaction.commit();
 
 
     }
 
+    @Override
+    public void onBackPressed() {
+        if (backPressedTime + 4000 > System.currentTimeMillis()) {
+            super.onBackPressed();
+            finish();
+        } else {
+            Snackbar.make(binding.framRegister, "برای خروج محددا کلیک کنید", Snackbar.LENGTH_SHORT).show();
 
-    private void init() {
-        nameEt = binding.etSignUpName;
-        emailEt = binding.etSignUpEmail;
-        phoneEt = binding.etSignUpPhone;
-        passwordEt = binding.etSignUpPassword;
-        r_passwordEt = binding.etSignUpPasswordR;
-
-        name = nameEt.getText().toString();
-        email = emailEt.getText().toString();
-        phone = phoneEt.getText().toString();
-        password = passwordEt.getText().toString();
-        r_password = r_passwordEt.getText().toString();
-
+        }
+        backPressedTime = System.currentTimeMillis();
     }
+
 }

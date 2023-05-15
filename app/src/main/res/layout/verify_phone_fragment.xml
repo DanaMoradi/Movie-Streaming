@@ -1,6 +1,186 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/warm_gray_900">
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_title"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_h"
+                android:layout_width="wrap_content"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.7" />
+
+            <TextView
+                android:id="@+id/tv_code_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_50sdp"
+                android:text="@string/send_sms_to"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/guideline_h"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vr"
+                app:layout_constraintStart_toStartOf="@+id/guideline_vl"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <TextView
+                android:id="@+id/tv_phone_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_50sdp"
+                android:gravity="center"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toTopOf="@id/guideline_h"
+                app:layout_constraintEnd_toEndOf="@id/tv_code_txt"
+                app:layout_constraintStart_toStartOf="@+id/tv_code_txt"
+                app:layout_constraintTop_toBottomOf="@+id/tv_code_txt"
+                tools:text="1234" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vl"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.05" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline_vr"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.95" />
+
+            <TextView
+                android:id="@+id/tv_verify_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/app_name"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_20ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/guideline_title" />
+
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_up_description"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tv_verify_title" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingVertical="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="@id/guideline_vr"
+                app:layout_constraintStart_toStartOf="@id/guideline_vl"
+                app:layout_constraintTop_toBottomOf="@id/guideline_h">
+
+
+                <com.chaos.view.PinView
+                    android:id="@+id/pv_verify_code"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:cursorVisible="true"
+                    android:focusableInTouchMode="true"
+                    android:inputType="number"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_14ssp"
+                    android:textStyle="bold"
+                    app:hideLineWhenFilled="true"
+                    app:itemCount="4"
+                    app:itemRadius="@dimen/_12sdp"
+                    app:itemSpacing="@dimen/_10sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:lineColor="@color/yellow_500"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_verify_confirm"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_4sdp"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:backgroundTint="@color/yellow_500"
+                    android:text="@string/conform"
+                    android:textColor="@color/text_color"
+                    app:cornerRadius="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="@id/pv_verify_code"
+                    app:layout_constraintTop_toBottomOf="@id/pv_verify_code"
+                    app:rippleColor="@color/yellow_200"
+                    tools:ignore="TextContrastCheck" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_verify_back"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_marginEnd="@dimen/_4sdp"
+                    android:backgroundTint="@color/yellow_500"
+                    android:text="@string/back"
+                    android:textColor="@color/text_color"
+                    app:cornerRadius="@dimen/_12sdp"
+                    app:layout_constraintStart_toStartOf="@id/pv_verify_code"
+                    app:layout_constraintTop_toBottomOf="@id/pv_verify_code"
+                    app:rippleColor="@color/yellow_200"
+                    tools:ignore="TextContrastCheck" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/todo"
+        android:elevation="-2dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/register" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/todo"
+        android:elevation="-2dp"
+        android:src="@drawable/bg_tab_layout" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:contentDescription="@string/todo"
+        android:elevation="-2dp"
+        android:src="@drawable/bg_appbar" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

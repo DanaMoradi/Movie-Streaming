@@ -30,7 +30,7 @@
             android:id="@+id/cl_mainContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="visible">
+            android:visibility="invisible">
             <!--AppBar-->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/appbar"

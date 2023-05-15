@@ -5,15 +5,13 @@ import android.content.SharedPreferences;
 
 import com.example.bbc.db.common.ApiConstant;
 
-public class SplashSharePref {
-
-
+public class IntroPref {
 
 
     private SharedPreferences sharedPreferences;
 
-    public SplashSharePref(Context context) {
-        sharedPreferences = context.getSharedPreferences("splash", Context.MODE_PRIVATE);
+    public IntroPref(Context context) {
+        sharedPreferences = context.getSharedPreferences(ApiConstant.INTRO_PREF_NAME, Context.MODE_PRIVATE);
     }
 
 
@@ -21,7 +19,7 @@ public class SplashSharePref {
         return sharedPreferences.getBoolean(ApiConstant.INTRO_IS_OPEN, false);
     }
 
-    public void saveSplashScreen() {
+    public void saveIntro() {
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putBoolean(ApiConstant.INTRO_IS_OPEN, true);
         editor.apply();

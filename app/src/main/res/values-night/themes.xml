@@ -1,3 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base application theme. -->
+    <style name="Theme.BBC" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/gray_100</item>
+        <item name="colorPrimaryVariant">@color/warm_gray_900</item>
+        <item name="colorOnPrimary">@color/gray_700</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/yellow_200</item>
+        <item name="colorSecondaryVariant">@color/yellow_500</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@color/warm_gray_900</item>
+
+        <!-- Font Family-->
+        <item name="fontFamily">@font/shabnam_medium</item>
+    </style>
+
+
+    <style name="MyTextInputLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+        <item name="android:layout_marginTop">@dimen/_4sdp</item>
+        <item name="android:layoutDirection">rtl</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="boxStrokeColor">@color/text_input_color_selector</item>
+        <item name="counterTextColor">@color/white</item>
+        <item name="hintTextAppearance">@style/TextAppearance.AppCompat.Small</item>
+        <item name="startIconTint">@color/white</item>
+        <item name="endIconTint">@color/white</item>
+        <item name="cursorColor">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+
+
 </resources>

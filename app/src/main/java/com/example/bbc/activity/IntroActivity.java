@@ -12,7 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.example.bbc.R;
 import com.example.bbc.adapter.IntroAdapter;
 import com.example.bbc.databinding.ActivitySplashScreenBinding;
-import com.example.bbc.db.sharedPrefrences.SplashSharePref;
+import com.example.bbc.db.sharedPrefrences.IntroPref;
 import com.example.bbc.model.IntroModel;
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.tabs.TabLayout;
@@ -24,7 +24,7 @@ import java.util.List;
 public class IntroActivity extends AppCompatActivity implements View.OnClickListener {
 
     ActivitySplashScreenBinding binding;
-    SplashSharePref pref;
+    IntroPref pref;
 
 
     private ViewPager viewPager;
@@ -104,7 +104,7 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
 
     private void init() {
 
-        pref = new SplashSharePref(this);
+        pref = new IntroPref(this);
 
         viewPager = binding.vpIntro;
         tabs = binding.tabsIntro;
@@ -123,6 +123,6 @@ public class IntroActivity extends AppCompatActivity implements View.OnClickList
         Intent intent = new Intent(IntroActivity.this, MainActivity.class);
         startActivity(intent);
         finish();
-        pref.saveSplashScreen();
+        pref.saveIntro();
     }
 }

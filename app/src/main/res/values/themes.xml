@@ -13,10 +13,24 @@
         <item name="android:statusBarColor">@color/warm_gray_900</item>
 
         <!-- Font Family-->
-        <item name="fontFamily">@font/iranian_sans</item>
+        <item name="fontFamily">@font/shabnam_medium</item>
     </style>
 
 
+    <style name="MyTextInputLayout" parent="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+
+        <item name="android:layout_marginTop">@dimen/_4sdp</item>
+        <item name="android:layoutDirection">rtl</item>
+        <item name="android:textColorHint">@color/white</item>
+        <item name="boxStrokeColor">@color/text_input_color_selector</item>
+        <item name="counterTextColor">@color/white</item>
+        <item name="hintTextAppearance">@style/TextAppearance.AppCompat.Small</item>
+        <item name="startIconTint">@color/white</item>
+        <item name="endIconTint">@color/white</item>
+        <item name="cursorColor">@color/white</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
 
 
 </resources>
